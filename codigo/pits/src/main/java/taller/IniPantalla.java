@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
  * @author ttc46
  */
 public class IniPantalla extends javax.swing.JFrame {
+    BDUsuarios BD;
 
     /**
      * Creates new form IniPantalla

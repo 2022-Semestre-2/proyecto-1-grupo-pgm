@@ -1,9 +1,6 @@
 package taller;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.xml.validation.Validator;
+import Enums.ETipoUsuario;
 
 /**
  * Hello world!
@@ -11,10 +8,12 @@ import javax.xml.validation.Validator;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hola");
-    }
-
-    
+    public static void main( String[] args ){
+        BDUsuarios b = new BDUsuarios();
+        Usuario tmp = new Usuario(ETipoUsuario.CLIENTE , "C1", "P1");
+        b.addUsr(tmp);
+        tmp = new Usuario(ETipoUsuario.CLIENTE , "C2", "P2");
+        b.addUsr(tmp);
+        b.saveJson();
+    } 
 }
