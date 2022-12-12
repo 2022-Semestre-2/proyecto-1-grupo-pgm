@@ -133,8 +133,9 @@ public class IniPantalla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+
         if(!this.jTextField1.getText().isEmpty()&&!this.jPasswordField1.getPassword().toString().isEmpty()){
-            if(validar(this.jTextField1.getText(), "^[a-zA-Z0-9_]+$")&&validar(this.jPasswordField1.getPassword().toString(), "^[a-zA-Z0-9_]+$")){
+            if(validar(this.jTextField1.getText(), "^[a-zA-Z0-9_]+$")&&validar(this.jPasswordField1.getText(), "^[a-zA-Z0-9_]+$")){
                 this.LabelErrs.setText("2 bien");
             }
             else{
