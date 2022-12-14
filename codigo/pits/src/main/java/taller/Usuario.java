@@ -2,15 +2,16 @@ package taller;
 
 import java.util.ArrayList;
 
-import Enums.ETipoUsuario;
+import Enums.TipoUsuario;
 
 public class Usuario {
     //esta es la clase principal
-    public ETipoUsuario tipo;
-    public String userName;
-    public String userPass;
-    public String name;
-    public String apellido;
+    private  TipoUsuario tipo;
+    private  String userName;
+    private  String userPass;
+    private  String name;
+    private  String apellido;
+    
     
     String telefono;
 
@@ -18,7 +19,7 @@ public class Usuario {
     ArrayList<Vehiculo> vehiculos;
 
 
-    Usuario(ETipoUsuario tipo,String usr,String pass){
+    Usuario(TipoUsuario tipo,String usr,String pass){
         this.tipo=tipo;
         this.userName=usr;
         this.userPass=pass;
@@ -31,6 +32,41 @@ public class Usuario {
         this.userName=usr;
         this.userPass=pass;
         this.vehiculos=new ArrayList<Vehiculo>();
+    }
+
+
+    public TipoUsuario getTipo() {
+        return tipo;
+    }
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+
+    public String getUserPass() {
+        return userPass;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
+    public String getApellido() {
+        return apellido;
+    }
+
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+
+    public ArrayList<Vehiculo> getVehiculos() {
+        return vehiculos;
     }
 
 }

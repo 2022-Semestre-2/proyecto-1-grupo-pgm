@@ -11,7 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-import Enums.ETipoUsuario;
+import Enums.TipoUsuario;
 /**
  * Base de datos
  * @author ttc46
@@ -22,6 +22,7 @@ public class BD {
 
     BD(){
         usuarios = new ArrayList<Usuario>();
+        servicios = new ArrayList<Servicio>();
         loadDB();
     }
 
@@ -43,6 +44,9 @@ public class BD {
      */
     public void addUsr(Usuario usr){
         this.usuarios.add(usr);
+    }
+    public void addService(Servicio servi){
+        
     }
 
 
@@ -74,7 +78,7 @@ public class BD {
                 this.usuarios.add(myTypes[i]);
             }
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
-            Usuario tmp = new Usuario(ETipoUsuario.EMPLEADO, "admin", "admin");
+            Usuario tmp = new Usuario(TipoUsuario.EMPLEADO, "admin", "admin");
             this.usuarios.add(tmp);
             saveJson();
         }

@@ -2,8 +2,8 @@ package taller;
 
 import java.io.Serializable;
 
-import Enums.ECombustible;
-import Enums.ETransmision;
+import Enums.Combustible;
+import Enums.Transmision;
 
 public class Vehiculo {
     String modelo;
@@ -12,8 +12,8 @@ public class Vehiculo {
     int puertas;
     int ahno;
     String placa;
-    ECombustible combustible;
-    ETransmision transmision;
+    Combustible combustible;
+    Transmision transmision;
     boolean mantenimiento;
 
     Vehiculo(String test){      //este es de prueba
@@ -23,9 +23,45 @@ public class Vehiculo {
         this.puertas=4;
         this.ahno=1990;
         this.placa = "ABCDEFG";
-        this.combustible=ECombustible.DIESEL;
-        this.transmision=ETransmision.SECUENCIAL;
+        this.combustible=Combustible.DIESEL;
+        this.transmision=Transmision.SECUENCIAL;
         this.mantenimiento=false;
 
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public int getAsientos() {
+        return asientos;
+    }
+
+    public int getPuertas() {
+        return puertas;
+    }
+
+    public int getAhno() {
+        return ahno;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public Combustible getCombustible() {
+        return combustible;
+    }
+
+    public Transmision getTransmision() {
+        return transmision;
+    }
+
+    public boolean isMantenimiento() {
+        return mantenimiento;
     }
 }

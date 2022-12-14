@@ -2,12 +2,12 @@ package taller;
 
 import java.util.Date;
 
-import Enums.ETipoServicio;
+import Enums.TipoServicio;
 
 public class Servicio {
     private boolean activo;
     private Vehiculo vehiculo;           //placa debe estar en el vehiculo
-    private ETipoServicio tipoServicio;
+    private TipoServicio tipoServicio;
     private String cedCliente;
     private String descripcionVehiculo;
     private String descripcionProblema;
