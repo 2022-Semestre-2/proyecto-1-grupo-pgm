@@ -5,7 +5,7 @@
 package Enums;
 
 /**
- *
+ * constantes de lso tipos de tansmision
  * @author ttc46
  */
 public enum ETransmision {

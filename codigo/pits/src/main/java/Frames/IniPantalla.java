@@ -7,14 +7,14 @@ package Frames;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import taller.BDUsuarios;
+import taller.BD;
 
 /**
  *
  * @author ttc46
  */
 public class IniPantalla extends javax.swing.JFrame {
-    BDUsuarios BD;
+    BD bd;
 
     /**
      * Creates new form IniPantalla
