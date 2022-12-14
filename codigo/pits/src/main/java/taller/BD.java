@@ -18,6 +18,7 @@ import Enums.ETipoUsuario;
  */
 public class BD {
     ArrayList<Usuario> usuarios;
+    ArrayList<Servicio> servicios;
 
     BD(){
         usuarios = new ArrayList<Usuario>();
@@ -52,7 +53,7 @@ public class BD {
     public Usuario getuUsuario(String nombreUsr){
         if (userExists(nombreUsr)){
             for (Usuario usuario : usuarios) {
-                if(usuario.userName==nombreUsr){
+                if(usuario.getUserName()==nombreUsr){
                     return usuario;
                 }
             }
@@ -86,7 +87,7 @@ public class BD {
      */
     private boolean userExists(String usrnm){
         for (Usuario usuario : usuarios) {
-            if (usuario.userName==usrnm)
+            if (usuario.getUserName()==usrnm)
             return true;
         }
         return false;
