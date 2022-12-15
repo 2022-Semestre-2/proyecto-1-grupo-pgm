@@ -13,7 +13,8 @@ import com.google.gson.JsonSyntaxException;
 
 import Enums.TipoUsuario;
 /**
- * Base de datos
+ * Base de datos 
+ * Diagrama de clases https://drive.google.com/file/d/1BtV5ftL1CqnjO2gyDr8QG4pgQPPn4vX8/view?usp=sharing
  * @author ttc46
  */
 public class BD {
@@ -45,7 +46,13 @@ public class BD {
     public void addUsr(Usuario usr){
         this.usuarios.add(usr);
     }
-    public void addService(Servicio servi){
+
+
+
+    /**
+     * @param servicio
+     */
+    public void addService(Servicio servicio){
         
     }
 

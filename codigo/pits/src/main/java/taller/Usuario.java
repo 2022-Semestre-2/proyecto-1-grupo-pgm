@@ -2,6 +2,7 @@ package taller;
 
 import java.util.ArrayList;
 
+import Enums.Provincia;
 import Enums.TipoUsuario;
 
 public class Usuario {
@@ -11,10 +12,15 @@ public class Usuario {
     private  String userPass;
     private  String name;
     private  String apellido;
-    
-    
+    private String ID;
+    private String tipoID;
     String telefono;
-
+    String correo;
+    String rol;
+    String fechaDeingreso;
+    Provincia provincia;
+    String Canton;
+    String fechaCumple;
 
     ArrayList<Vehiculo> vehiculos;
 

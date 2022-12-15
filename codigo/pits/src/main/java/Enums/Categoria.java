@@ -1,5 +1,5 @@
 package Enums;
 
 public enum Categoria {
-    SEDAN, _4X4, PICKUP, SUV
+    SEDAN, _4X4, PICKUP, SUV,CROSSOVER,HATCHBACK,COUPE,STATION_WAGON,CONVERTIBLE,MPV
 }
