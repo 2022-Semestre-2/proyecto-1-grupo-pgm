@@ -10,11 +10,25 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+/**
+ * Esta clase se encarga de modificar la base de datos en un archivo JSON para agregar y eliminar Marcas y Modelos
+ * @author Mynell J. Myers
+ * @version 1.5
+ */
+
 public class Exp {
-    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\exp\\newjson.json";
+    //Variable que contiene la direccion del archivo JSON donde se guardan los datos
+    final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\exp\\newjson.json";
     public static void main(String[] args) throws FileNotFoundException{
-        Exp t1 = new Exp();
+        Cliente t1= new Cliente();
+        t1.incluirCliente("abigail", "Perez Porras", "203940320", "Extranjera", "Limon", "Pococi", "12/10/2004", "89674521", "Alwegmail.com");
     }
+    /**
+     * Metodo que se encarga de incluir una marca a la base de datos 
+     * @param nombre Nombre de la marca a registrar 
+     * @param categoria Categoria de la marca a registrar (4x4, Jeap, Sedan, PickUp, Suv...)
+     * @throws FileNotFoundException Al no encontrar al archivo de la direccion designada
+     */
     public void incluirMarca(String nombre, String categoria) throws FileNotFoundException{
         JsonObject nuevo= new JsonObject();
         JsonObject agregar= new JsonObject();
@@ -32,6 +46,11 @@ public class Exp {
             e.printStackTrace();
         }
     }
+    /**
+     * Metodo que se encarga de eliminar una marca de la base de datos JSON
+     * @param nombre Nombre de la marca a eliminar
+     * @throws FileNotFoundException Al no encontrar el arhivo en la direccion designada
+     */
     public void eliminarMarca(String nombre)throws FileNotFoundException{
         JsonObject nuevo= new JsonObject();
         JsonArray arr = new JsonArray();
@@ -52,6 +71,16 @@ public class Exp {
             e.printStackTrace();
         }
     }
+    /**
+     * Metodo para incluir un nuevo modelo a la base de datos
+     * @param modelo nombre del nuevo modelo 
+     * @param marca Marca de las registradas anteriormente para el modelo 
+     * @param asientos Cantidad de asientos del modelo
+     * @param puertas Cantidad de puertas del modelo
+     * @param combustible Tipo de combustible que utiliza el modelo
+     * @param transmision Tipo de transmision que utiliza el modelo
+     * @throws FileNotFoundException Al no encontrar el archivo en la direccion designada
+     */
     public void incluirModelo(String modelo,String marca, int asientos, int puertas,String combustible,String transmision)throws FileNotFoundException{
         JsonObject nuevo= new JsonObject();
         JsonObject agregar= new JsonObject();
@@ -77,6 +106,11 @@ public class Exp {
             System.out.println("Marca no existe en el archivo");
         }
     }
+    /**
+     * Metodo que se encarga de eliminar un modelo de la base de datos JSON
+     * @param nombre Nombre del modelo a eliminar
+     * @throws FileNotFoundException Al no encontrar el archivo en la direccion designada 
+     */
     public void eliminarModelo(String nombre)throws FileNotFoundException{
         JsonObject nuevo= new JsonObject();
         JsonArray arr = new JsonArray();
@@ -97,6 +131,12 @@ public class Exp {
             e.printStackTrace();
         }
     }
+    /**
+     * Metodo que confirma la existencia de una marca en la base de datos
+     * @param nombre Nombre de la marca a buscar 
+     * @return Si es verdadero es porque se encuentra en el archivo, de lo contrario no
+     * @throws FileNotFoundException Al no encontrar el archivo de la direccion designada 
+     */
     private boolean existeEnArchivo(String nombre) throws FileNotFoundException{
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
         JsonArray marcas= obj.get("Marcas").getAsJsonArray();
