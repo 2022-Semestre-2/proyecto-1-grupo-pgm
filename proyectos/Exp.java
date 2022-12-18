@@ -14,7 +14,6 @@ public class Exp {
     private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\exp\\newjson.json";
     public static void main(String[] args) throws FileNotFoundException{
         Exp t1 = new Exp();
-        t1.eliminarModelo("6162");
     }
     public void incluirMarca(String nombre, String categoria) throws FileNotFoundException{
         JsonObject nuevo= new JsonObject();
@@ -65,13 +64,17 @@ public class Exp {
         agregar.addProperty("Combustible", combustible);
         agregar.addProperty("Transmision", transmision);
         arr.add(agregar);
-        try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
-            nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
-            nuevo.add("Modelos", arr);
-            String jsonString= new Gson().toJson(nuevo);
-            escritor.write(jsonString);
-        }catch(Exception e){
-            e.printStackTrace();
+        if (new Exp().existeEnArchivo(marca)){
+            try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
+                nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
+                nuevo.add("Modelos", arr);
+                String jsonString= new Gson().toJson(nuevo);
+                escritor.write(jsonString);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println("Marca no existe en el archivo");
         }
     }
     public void eliminarModelo(String nombre)throws FileNotFoundException{
@@ -94,5 +97,15 @@ public class Exp {
             e.printStackTrace();
         }
     }
-    private void existeEnArchivo(){}
+    private boolean existeEnArchivo(String nombre) throws FileNotFoundException{
+        JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
+        JsonArray marcas= obj.get("Marcas").getAsJsonArray();
+        for (JsonElement marca : marcas){
+            JsonObject indicador= marca.getAsJsonObject();
+            if (("\""+nombre+"\"").equals(indicador.get("Nombre").toString())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
