@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.exp;
+package com.mycompany.vehiculo;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -19,7 +19,7 @@ import java.io.PrintWriter;
  * @author Mynell J. Myers
  * @version 1.0
  */
-public class Cliente extends Exp{
+public class Cliente extends Vehiculo{
     /**
      * Metodo para agregar un cliente a la lista de clientes de archivo JSON
      * @param nombre Nombre del Cliente 
@@ -52,6 +52,7 @@ public class Cliente extends Exp{
             nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
             nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
             nuevo.add("Clientes", arr);
+            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
         }catch(Exception e){
@@ -78,6 +79,7 @@ public class Cliente extends Exp{
             nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
             nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
             nuevo.add("Clientes", arr);
+            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
         }catch(Exception e){
