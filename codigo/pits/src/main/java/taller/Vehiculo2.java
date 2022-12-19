@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.vehiculo;
+package taller;
 
 import com.google.gson.*;
 import java.io.FileNotFoundException;
