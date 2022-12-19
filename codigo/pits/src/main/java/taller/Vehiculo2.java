@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.exp;
+package com.mycompany.vehiculo;
 
 import com.google.gson.*;
 import java.io.FileNotFoundException;
@@ -16,12 +16,12 @@ import java.io.PrintWriter;
  * @version 1.5
  */
 
-public class Exp {
+public class Vehiculo2 {
     //Variable que contiene la direccion del archivo JSON donde se guardan los datos
-    final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\exp\\newjson.json";
+    final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
     public static void main(String[] args) throws FileNotFoundException{
-        Cliente t1= new Cliente();
-        t1.incluirCliente("abigail", "Perez Porras", "203940320", "Extranjera", "Limon", "Pococi", "12/10/2004", "89674521", "Alwegmail.com");
+        NewJFrame ventana = new NewJFrame();
+        ventana.setVisible(true);
     }
     /**
      * Metodo que se encarga de incluir una marca a la base de datos 
@@ -40,6 +40,8 @@ public class Exp {
         try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
             nuevo.add("Marcas", arr);
             nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+            nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
         }catch(Exception e){
@@ -65,6 +67,8 @@ public class Exp {
         try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
             nuevo.add("Marcas", arr);
             nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+            nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
         }catch(Exception e){
@@ -93,10 +97,12 @@ public class Exp {
         agregar.addProperty("Combustible", combustible);
         agregar.addProperty("Transmision", transmision);
         arr.add(agregar);
-        if (new Exp().existeEnArchivo(marca)){
+        if (new Vehiculo2().existeEnArchivo(marca)){
             try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                 nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
                 nuevo.add("Modelos", arr);
+                nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+                nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
                 String jsonString= new Gson().toJson(nuevo);
                 escritor.write(jsonString);
             }catch(Exception e){
@@ -125,6 +131,8 @@ public class Exp {
         try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
             nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
             nuevo.add("Modelos", arr);
+            nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
         }catch(Exception e){
