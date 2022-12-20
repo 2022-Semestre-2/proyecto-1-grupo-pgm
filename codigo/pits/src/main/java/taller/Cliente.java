@@ -19,7 +19,8 @@ import java.io.PrintWriter;
  * @author Mynell J. Myers
  * @version 1.0
  */
-public class Cliente extends Vehiculo{
+public class Cliente {
+    final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
     /**
      * Metodo para agregar un cliente a la lista de clientes de archivo JSON
      * @param nombre Nombre del Cliente 
