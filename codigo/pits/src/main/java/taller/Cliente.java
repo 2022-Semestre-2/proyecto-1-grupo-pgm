@@ -20,7 +20,7 @@ import java.io.PrintWriter;
  * @version 1.0
  */
 public class Cliente {
-    final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
+    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
     /**
      * Metodo para agregar un cliente a la lista de clientes de archivo JSON
      * @param nombre Nombre del Cliente 
