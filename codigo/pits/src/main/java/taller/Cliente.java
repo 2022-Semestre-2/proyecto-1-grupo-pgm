@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 /**
  * Esta clase se encarga de modificar el contenido del archivo JSON del proyecto, enfocandose en agregar y eliminar clientes de la base de datos
@@ -20,7 +21,7 @@ import java.io.PrintWriter;
  * @version 1.0
  */
 public class Cliente {
-    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
+    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\data.json";
     /**
      * Metodo para agregar un cliente a la lista de clientes de archivo JSON
      * @param nombre Nombre del Cliente 
@@ -48,10 +49,12 @@ public class Cliente {
         agregar.addProperty("Fecha", fecha);
         agregar.addProperty("Telefono", telefono);
         agregar.addProperty("Correo", correo);
+        agregar.add("Vehiculos", new JsonArray());
         arr.add(agregar);
         try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
             nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
             nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+            nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
             nuevo.add("Clientes", arr);
             nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
@@ -66,6 +69,7 @@ public class Cliente {
      * @throws FileNotFoundException Al archivo no estar encontrado en la direccion designada
      */
     public void eliminarCliente(String identificacion) throws FileNotFoundException{
+        boolean condicion = true;
         JsonObject nuevo= new JsonObject();
         JsonArray arr = new JsonArray();
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
@@ -74,17 +78,23 @@ public class Cliente {
             JsonObject indicador= marca.getAsJsonObject();
             if (!("\""+identificacion+"\"").equals(indicador.get("Identificacion").toString())){
                 arr.add(marca);
+            }else{
+                condicion = false;
             }
         }
         try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
             nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
             nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+            nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
             nuevo.add("Clientes", arr);
             nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
         }catch(Exception e){
             e.printStackTrace();
+        }
+        if (condicion){
+            JOptionPane.showMessageDialog(null,"Cliente no encontrado","Error",JOptionPane.WARNING_MESSAGE);
         }
     }
 }
