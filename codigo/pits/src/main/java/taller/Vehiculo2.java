@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 
 public class Vehiculo2 {
     //Variable que contiene la direccion del archivo JSON donde se guardan los datos
-    final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
+    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\newjson.json";
     public static void main(String[] args) throws FileNotFoundException{
         NewJFrame ventana = new NewJFrame();
         ventana.setVisible(true);
