@@ -49,11 +49,11 @@ public class BD {
 
 
 
-    /**
+    /** agrega un servicio
      * @param servicio
      */
     public void addService(Servicio servicio){
-        
+        this.servicios.add(servicio);
     }
 
 

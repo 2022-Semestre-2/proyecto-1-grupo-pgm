@@ -136,10 +136,11 @@ public class IniPantalla extends javax.swing.JFrame {
 
         if(!this.jTextField1.getText().isEmpty()&&!this.jPasswordField1.getPassword().toString().isEmpty()){
             if(validar(this.jTextField1.getText(), "^[a-zA-Z0-9_]+$")&&validar(this.jPasswordField1.getText(), "^[a-zA-Z0-9_]+$")){
+
                 new PantallaUsuario().setVisible(true);
             }
             else{
-                this.LabelErrs.setText("algo mal");
+                this.LabelErrs.setText("Usuario/contraseña incorrecto");
             }
         }
         else{
