@@ -122,7 +122,7 @@ public class BD {
         agregar.addProperty("Nombre", nombre);
         agregar.addProperty("Categoria", categoria);
         arr.add(agregar);
-        if (!new Vehiculo().existeEnArchivo(nombre,"Marcas")){
+        if (!new BD().existeEnArchivo(nombre,"Marcas")){
             if ((((nombre.replaceAll(" ", "")).length()) != 0)&&(((categoria.replaceAll(" ", "")).length()) != 0)){
                 try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                     nuevo.add("Marcas", arr);
@@ -153,9 +153,9 @@ public class BD {
         JsonArray arr = new JsonArray();
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
         JsonArray marcas= obj.get("Marcas").getAsJsonArray();
-        if (!new Vehiculo().ligadoAModelo(nombre)){
+        if (!new BD().ligadoAModelo(nombre)){
             if((((nombre.replaceAll(" ", "")).length()) != 0)){
-                if (new Vehiculo().existeEnArchivo(nombre,"Marcas")){
+                if (new BD().existeEnArchivo(nombre,"Marcas")){
                     for (JsonElement marca : marcas){
                         JsonObject indicador= marca.getAsJsonObject();
                         if (!("\""+nombre+"\"").equals(indicador.get("Nombre").toString())){
@@ -206,8 +206,8 @@ public class BD {
         agregar.addProperty("Combustible", combustible);
         agregar.addProperty("Transmision", transmision);
         arr.add(agregar);
-        if (new Vehiculo().existeEnArchivo(marca,"Marcas")){
-            if (!new Vehiculo().ligadoAModelo(marca)){
+        if (new BD().existeEnArchivo(marca,"Marcas")){
+            if (!new BD().ligadoAModelo(marca)){
                 if ((((modelo.replaceAll(" ", "")).length()) != 0)&&(((marca.replaceAll(" ", "")).length()) != 0)&&(((combustible.replaceAll(" ", "")).length()) != 0)&&(((transmision.replaceAll(" ", "")).length()) != 0)){
                     try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                         nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
@@ -248,7 +248,7 @@ public class BD {
             }
         }
         if ((((nombre.replaceAll(" ", "")).length()) != 0)){
-            if(new Vehiculo().existeEnArchivo(nombre, "Modelos")){
+            if(new BD().existeEnArchivo(nombre, "Modelos")){
                 try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                     nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
                     nuevo.add("Modelos", arr);
