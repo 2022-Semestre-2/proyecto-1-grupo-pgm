@@ -51,16 +51,19 @@ public class Cliente {
         agregar.addProperty("Correo", correo);
         agregar.add("Vehiculos", new JsonArray());
         arr.add(agregar);
-        try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
-            nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
-            nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
-            nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
-            nuevo.add("Clientes", arr);
-            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
-            String jsonString= new Gson().toJson(nuevo);
-            escritor.write(jsonString);
-        }catch(Exception e){
-            e.printStackTrace();
+        if ((((nombre.replaceAll(" ", "")).length()) != 0)&&(((apellidos.replaceAll(" ", "")).length()) != 0)&&(((identificacion.replaceAll(" ", "")).length()) != 0)&&(((tipoIdentificacion.replaceAll(" ", "")).length()) != 0)&&(((provincia.replaceAll(" ", "")).length()) != 0)&&(((canton.replaceAll(" ", "")).length()) != 0)&&(((fecha.replaceAll(" ", "")).length()) != 0)&&(((telefono.replaceAll(" ", "")).length()) != 0)&&(((correo.replaceAll(" ", "")).length()) != 0)){
+            try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
+                nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
+                nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+                nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
+                nuevo.add("Clientes", arr);
+                nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
+                String jsonString= new Gson().toJson(nuevo);
+                escritor.write(jsonString);
+                JOptionPane.showInternalMessageDialog(null, "Cliente Incluido", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
     }
     /**
@@ -90,6 +93,7 @@ public class Cliente {
             nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
             String jsonString= new Gson().toJson(nuevo);
             escritor.write(jsonString);
+            JOptionPane.showInternalMessageDialog(null, "Cliente Eliminado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
         }catch(Exception e){
             e.printStackTrace();
         }
