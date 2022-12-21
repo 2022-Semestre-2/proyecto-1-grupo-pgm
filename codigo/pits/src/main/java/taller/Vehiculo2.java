@@ -9,19 +9,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 /**
  * Esta clase se encarga de modificar la base de datos en un archivo JSON para agregar y eliminar Marcas y Modelos
  * @author Mynell J. Myers
- * @version 1.5
+ * @version 1.8
  */
 
-public class Vehiculo2 {
+public class Vehiculo {
     //Variable que contiene la direccion del archivo JSON donde se guardan los datos
     private final String direccion= "newjson.json"; //acortado para que sea path relativo
     public static void main(String[] args) throws FileNotFoundException{
-        NewJFrame ventana = new NewJFrame();
-        ventana.setVisible(true);
+        ModeloVisual t1 = new ModeloVisual();
+        t1.setVisible(true);
     }
     /**
      * Metodo que se encarga de incluir una marca a la base de datos 
@@ -37,15 +38,25 @@ public class Vehiculo2 {
         agregar.addProperty("Nombre", nombre);
         agregar.addProperty("Categoria", categoria);
         arr.add(agregar);
-        try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
-            nuevo.add("Marcas", arr);
-            nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
-            nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
-            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
-            String jsonString= new Gson().toJson(nuevo);
-            escritor.write(jsonString);
-        }catch(Exception e){
-            e.printStackTrace();
+        if (!new Vehiculo().existeEnArchivo(nombre,"Marcas")){
+            if ((((nombre.replaceAll(" ", "")).length()) != 0)&&(((categoria.replaceAll(" ", "")).length()) != 0)){
+                try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
+                    nuevo.add("Marcas", arr);
+                    nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+                    nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
+                    nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+                    nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
+                    String jsonString= new Gson().toJson(nuevo);
+                    escritor.write(jsonString);
+                    JOptionPane.showInternalMessageDialog(null, "Marca Agregada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Asegurese que todos los campos tengan datos", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Marca ya existe en archivo","Error",JOptionPane.WARNING_MESSAGE);
         }
     }
     /**
@@ -58,21 +69,35 @@ public class Vehiculo2 {
         JsonArray arr = new JsonArray();
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
         JsonArray marcas= obj.get("Marcas").getAsJsonArray();
-        for (JsonElement marca : marcas){
-            JsonObject indicador= marca.getAsJsonObject();
-            if (!("\""+nombre+"\"").equals(indicador.get("Nombre").toString())){
-                arr.add(marca);
+        if (!new Vehiculo().ligadoAModelo(nombre)){
+            if((((nombre.replaceAll(" ", "")).length()) != 0)){
+                if (new Vehiculo().existeEnArchivo(nombre,"Marcas")){
+                    for (JsonElement marca : marcas){
+                        JsonObject indicador= marca.getAsJsonObject();
+                        if (!("\""+nombre+"\"").equals(indicador.get("Nombre").toString())){
+                            arr.add(marca);
+                        }
+                    }
+                    try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
+                        nuevo.add("Marcas", arr);
+                        nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
+                        nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
+                        nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+                        nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
+                        String jsonString= new Gson().toJson(nuevo);
+                        escritor.write(jsonString);
+                        JOptionPane.showInternalMessageDialog(null, "Marca Eliminada", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null,"Marca no encontrada","Error",JOptionPane.WARNING_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingrese un valor", "Error", JOptionPane.WARNING_MESSAGE);
             }
-        }
-        try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
-            nuevo.add("Marcas", arr);
-            nuevo.add("Modelos", obj.get("Modelos").getAsJsonArray());
-            nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
-            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
-            String jsonString= new Gson().toJson(nuevo);
-            escritor.write(jsonString);
-        }catch(Exception e){
-            e.printStackTrace();
+        }else{
+            JOptionPane.showMessageDialog(null, "Marca ligada a Modelo/Imposible de eliminar","Error",JOptionPane.WARNING_MESSAGE);
         }
     }
     /**
@@ -85,7 +110,7 @@ public class Vehiculo2 {
      * @param transmision Tipo de transmision que utiliza el modelo
      * @throws FileNotFoundException Al no encontrar el archivo en la direccion designada
      */
-    public void incluirModelo(String modelo,String marca, int asientos, int puertas,String combustible,String transmision)throws FileNotFoundException{
+    public void incluirModelo(String modelo,String marca, Integer asientos, Integer puertas,String combustible,String transmision)throws FileNotFoundException{
         JsonObject nuevo= new JsonObject();
         JsonObject agregar= new JsonObject();
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
@@ -97,19 +122,29 @@ public class Vehiculo2 {
         agregar.addProperty("Combustible", combustible);
         agregar.addProperty("Transmision", transmision);
         arr.add(agregar);
-        if (new Vehiculo2().existeEnArchivo(marca)){
-            try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
-                nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
-                nuevo.add("Modelos", arr);
-                nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
-                nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
-                String jsonString= new Gson().toJson(nuevo);
-                escritor.write(jsonString);
-            }catch(Exception e){
-                e.printStackTrace();
+        if (new Vehiculo().existeEnArchivo(marca,"Marcas")){
+            if (!new Vehiculo().ligadoAModelo(marca)){
+                if ((((modelo.replaceAll(" ", "")).length()) != 0)&&(((marca.replaceAll(" ", "")).length()) != 0)&&(((combustible.replaceAll(" ", "")).length()) != 0)&&(((transmision.replaceAll(" ", "")).length()) != 0)){
+                    try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
+                        nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
+                        nuevo.add("Modelos", arr);
+                        nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
+                        nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+                        nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
+                        String jsonString= new Gson().toJson(nuevo);
+                        escritor.write(jsonString);
+                        JOptionPane.showInternalMessageDialog(null, "Modelo Agregado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    }catch(Exception e){
+                        e.printStackTrace();
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Alguno de los margenes es vacio", "Error", JOptionPane.WARNING_MESSAGE);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Marca ya esta en uso","Error",JOptionPane.WARNING_MESSAGE);
             }
         }else{
-            System.out.println("Marca no existe en el archivo");
+            JOptionPane.showMessageDialog(null, "Marca no existe","Error",JOptionPane.WARNING_MESSAGE);
         }
     }
     /**
@@ -128,15 +163,25 @@ public class Vehiculo2 {
                 arr.add(modelo);
             }
         }
-        try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
-            nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
-            nuevo.add("Modelos", arr);
-            nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
-            nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
-            String jsonString= new Gson().toJson(nuevo);
-            escritor.write(jsonString);
-        }catch(Exception e){
-            e.printStackTrace();
+        if ((((nombre.replaceAll(" ", "")).length()) != 0)){
+            if(new Vehiculo().existeEnArchivo(nombre, "Modelos")){
+                try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
+                    nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
+                    nuevo.add("Modelos", arr);
+                    nuevo.add("Empleados", obj.get("Empleados").getAsJsonArray());
+                    nuevo.add("Clientes", obj.get("Clientes").getAsJsonArray());
+                    nuevo.add("Servicios", obj.get("Servicios").getAsJsonArray());
+                    String jsonString= new Gson().toJson(nuevo);
+                    escritor.write(jsonString);
+                    JOptionPane.showInternalMessageDialog(null, "Modelo Eliminado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Modelo no encontrado", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese un valor", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
     /**
@@ -145,12 +190,29 @@ public class Vehiculo2 {
      * @return Si es verdadero es porque se encuentra en el archivo, de lo contrario no
      * @throws FileNotFoundException Al no encontrar el archivo de la direccion designada 
      */
-    private boolean existeEnArchivo(String nombre) throws FileNotFoundException{
+    private boolean existeEnArchivo(String nombre, String tipo) throws FileNotFoundException{
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
-        JsonArray marcas= obj.get("Marcas").getAsJsonArray();
+        JsonArray marcas= obj.get(tipo).getAsJsonArray();
         for (JsonElement marca : marcas){
             JsonObject indicador= marca.getAsJsonObject();
             if (("\""+nombre+"\"").equals(indicador.get("Nombre").toString())){
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Metodo para descubrir si alguna marca esta en uso pot algun modelo
+     * @param nombre Nombre de la marca a indetificar 
+     * @return True si se encuentra en uso, False si no se encuentra en uso
+     * @throws FileNotFoundException Error al no encontrar el archivo
+     */
+    private boolean ligadoAModelo (String nombre) throws FileNotFoundException{
+        JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
+        JsonArray marcas= obj.get("Modelos").getAsJsonArray();
+        for (JsonElement marca : marcas){
+            JsonObject indicador= marca.getAsJsonObject();
+            if (("\""+nombre+"\"").equals(indicador.get("Marca").toString())){
                 return true;
             }
         }
