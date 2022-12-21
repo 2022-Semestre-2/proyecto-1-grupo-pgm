@@ -153,7 +153,7 @@ public class BD {
         JsonArray arr = new JsonArray();
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
         JsonArray marcas= obj.get("Marcas").getAsJsonArray();
-        if (!new BD().ligadoAModelo(nombre)){
+        if (!new BD().ligadoA(nombre,"Modelos","Marca")){
             if((((nombre.replaceAll(" ", "")).length()) != 0)){
                 if (new BD().existeEnArchivo(nombre,"Marcas")){
                     for (JsonElement marca : marcas){
@@ -207,7 +207,7 @@ public class BD {
         agregar.addProperty("Transmision", transmision);
         arr.add(agregar);
         if (new BD().existeEnArchivo(marca,"Marcas")){
-            if (!new BD().ligadoAModelo(marca)){
+            if (!new BD().ligadoA(marca,"Modelos","Marca")){
                 if ((((modelo.replaceAll(" ", "")).length()) != 0)&&(((marca.replaceAll(" ", "")).length()) != 0)&&(((combustible.replaceAll(" ", "")).length()) != 0)&&(((transmision.replaceAll(" ", "")).length()) != 0)){
                     try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                         nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
@@ -291,12 +291,12 @@ public class BD {
      * @return True si se encuentra en uso, False si no se encuentra en uso
      * @throws FileNotFoundException Error al no encontrar el archivo
      */
-    private boolean ligadoAModelo (String nombre) throws FileNotFoundException{
+    private boolean ligadoA (String nombre, String tipo, String elemento) throws FileNotFoundException{
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
-        JsonArray marcas= obj.get("Modelos").getAsJsonArray();
+        JsonArray marcas= obj.get(tipo).getAsJsonArray();
         for (JsonElement marca : marcas){
             JsonObject indicador= marca.getAsJsonObject();
-            if (("\""+nombre+"\"").equals(indicador.get("Marca").toString())){
+            if (("\""+nombre+"\"").equals(indicador.get(elemento).toString())){
                 return true;
             }
         }
