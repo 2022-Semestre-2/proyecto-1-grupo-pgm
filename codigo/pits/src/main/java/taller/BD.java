@@ -107,7 +107,12 @@ public class BD {
         return false;
     }
     //Variable que contiene la direccion del archivo JSON donde se guardan los datos
-    private final String direccion= "src\\data.json";
+    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\data.json";
+    public static void main(String[] args) throws FileNotFoundException{
+        new ModeloVisual().setVisible(true);
+        new MarcaVisual().setVisible(true);
+        new ClienteVisual().setVisible(true);
+    }
     /**
      * Metodo que se encarga de incluir una marca a la base de datos 
      * @param nombre Nombre de la marca a registrar 
@@ -291,7 +296,7 @@ public class BD {
      * @return True si se encuentra en uso, False si no se encuentra en uso
      * @throws FileNotFoundException Error al no encontrar el archivo
      */
-    private boolean ligadoA (String nombre, String tipo, String elemento) throws FileNotFoundException{
+    public boolean ligadoA (String nombre, String tipo, String elemento) throws FileNotFoundException{
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
         JsonArray marcas= obj.get(tipo).getAsJsonArray();
         for (JsonElement marca : marcas){
