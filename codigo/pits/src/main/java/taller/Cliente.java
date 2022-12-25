@@ -64,6 +64,8 @@ public class Cliente {
             }catch(Exception e){
                 e.printStackTrace();
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Alguno de los valores son negativos", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
     /**
