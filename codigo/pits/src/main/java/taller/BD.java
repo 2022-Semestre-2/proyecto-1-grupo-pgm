@@ -25,7 +25,7 @@ public class BD {
     ArrayList<Usuario> usuarios;
     ArrayList<Servicio> servicios;
 
-    BD(){
+    public BD(){
         usuarios = new ArrayList<Usuario>();
         servicios = new ArrayList<Servicio>();
         loadDB();
@@ -108,7 +108,7 @@ public class BD {
         return false;
     }
     //Variable que contiene la direccion del archivo JSON donde se guardan los datos
-    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Vehiculo\\src\\main\\java\\com\\mycompany\\vehiculo\\data.json";
+    private final String direccion= "data.json";
     public static void main(String[] args) throws FileNotFoundException{
         new ModeloVisual().setVisible(true);
         new MarcaVisual().setVisible(true);
@@ -388,5 +388,11 @@ public class BD {
         if (condicion){
             JOptionPane.showMessageDialog(null,"Cliente no encontrado","Error",JOptionPane.WARNING_MESSAGE);
         }
+    }
+    public Vehiculo getVehiculoByuser(String cedula,String placa){
+        for (int i = 0; i < usuarios.size(); i++) {
+            
+        }
+        return null;
     }
 }
