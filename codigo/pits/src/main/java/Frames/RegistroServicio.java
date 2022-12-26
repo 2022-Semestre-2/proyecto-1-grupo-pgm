@@ -367,7 +367,8 @@ public class RegistroServicio extends javax.swing.JFrame {
         // revisar y registrar
         if(this.tServicioComboBox.getSelectedIndex()==0){
             if(!this.jTextField1.getText().isEmpty()&&!this.jTextField2.getText().isEmpty()&&!this.jTextPane1.getText().isEmpty()&&!this.jTextPane2.getText().isEmpty()&&!this.jFormattedTextField1.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
-                bd.addService(new Servicio(null, title, title, title, defaultCloseOperation,this.jDateChooser1.getDate(), this.jDateChooser2.getDate()));
+                
+                bd.addService(new Servicio(null, this.jTextField1.getText(), this.jTextPane1.getText(), this.jTextPane2.getText(),1,this.jDateChooser1.getDate().toString(), this.jDateChooser2.getDate().toString()));
             }
             else{
                 JOptionPane.showMessageDialog(this, "Llene todos los campos","ERROR", JOptionPane.ERROR_MESSAGE);
