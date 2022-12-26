@@ -109,11 +109,6 @@ public class BD {
     }
     //Variable que contiene la direccion del archivo JSON donde se guardan los datos
     private final String direccion= "data.json";
-    public static void main(String[] args) throws FileNotFoundException{
-        new ModeloVisual().setVisible(true);
-        new MarcaVisual().setVisible(true);
-        new ClienteVisual().setVisible(true);
-    }
     /**
      * Metodo que se encarga de incluir una marca a la base de datos 
      * @param nombre Nombre de la marca a registrar 

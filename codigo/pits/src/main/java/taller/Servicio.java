@@ -35,7 +35,7 @@ public class Servicio {
      * @param fechaRecibido
      * @param fechaTEntrega
      */
-    Servicio(Vehiculo vehiculo,String cedCliente,String descripcionVehiculo,String descripcionProblema,int costo,String fechaRecibido,String fechaTEntrega){
+    public Servicio(Vehiculo vehiculo,String cedCliente,String descripcionVehiculo,String descripcionProblema,int costo,String fechaRecibido,String fechaTEntrega){
         this.vehiculo=vehiculo;
         this.cedCliente=cedCliente;
         this.descripcionVehiculo=descripcionVehiculo;
