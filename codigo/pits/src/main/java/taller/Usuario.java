@@ -75,4 +75,11 @@ public class Usuario {
         return vehiculos;
     }
 
+
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return ID.hashCode();
+    }
+
 }
