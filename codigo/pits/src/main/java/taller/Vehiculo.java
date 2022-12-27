@@ -16,6 +16,9 @@ public class Vehiculo {
     Transmision transmision;
     boolean mantenimiento;
 
+    public Vehiculo() {
+    }
+
     Vehiculo(String test){      //este es de prueba
         this.modelo=test;
         this.marca="TOYOTA";
@@ -27,9 +30,6 @@ public class Vehiculo {
         this.transmision=Transmision.SECUENCIAL;
         this.mantenimiento=false;
 
-    }
-
-    public Vehiculo() {
     }
 
     public String getModelo() {
@@ -66,5 +66,10 @@ public class Vehiculo {
 
     public boolean isMantenimiento() {
         return mantenimiento;
+    }
+
+    @Override
+    public String toString() {
+        return placa;
     }
 }

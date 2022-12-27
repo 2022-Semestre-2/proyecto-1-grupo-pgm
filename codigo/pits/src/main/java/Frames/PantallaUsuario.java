@@ -4,17 +4,20 @@
  */
 package Frames;
 
+import taller.BD;
+
 /**
  *
  * @author ttc46
  */
 public class PantallaUsuario extends javax.swing.JFrame {
-
+    private BD bd;
     /**
      * Creates new form PantallaUsuario
      */
-    public PantallaUsuario() {
+    public PantallaUsuario(BD bd) {
         initComponents();
+        this.bd=bd;
     }
 
     /**
@@ -157,7 +160,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new RegistroServicio().setVisible(true);
+        new RegistroServicio(bd).setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -198,7 +201,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaUsuario().setVisible(true);
+                new PantallaUsuario(null).setVisible(true);
             }
         });
     }

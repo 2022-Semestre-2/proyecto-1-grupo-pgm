@@ -24,6 +24,12 @@ public class Usuario {
 
     ArrayList<Vehiculo> vehiculos;
 
+    Usuario(TipoUsuario tipo, String iD, String tipoID,int x) {
+        this.tipo = tipo;
+        ID = iD;
+        this.tipoID = tipoID;
+    }
+
 
     Usuario(TipoUsuario tipo,String usr,String pass){
         this.tipo=tipo;
@@ -80,6 +86,53 @@ public class Usuario {
     public int hashCode() {
         // TODO Auto-generated method stub
         return ID.hashCode();
+    }
+
+
+    public String getID() {
+        return ID;
+    }
+
+
+    public String getTipoID() {
+        return tipoID;
+    }
+
+
+    public String getCorreo() {
+        return correo;
+    }
+
+
+    public String getRol() {
+        return rol;
+    }
+
+
+    public String getFechaDeingreso() {
+        return fechaDeingreso;
+    }
+
+
+    public Provincia getProvincia() {
+        return provincia;
+    }
+
+
+    public String getCanton() {
+        return Canton;
+    }
+
+
+    public String getFechaCumple() {
+        return fechaCumple;
+    }
+
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return ID;
     }
 
 }

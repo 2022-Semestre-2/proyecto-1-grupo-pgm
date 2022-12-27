@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.ToIntBiFunction;
 
 import javax.swing.JOptionPane;
 
@@ -29,6 +31,10 @@ public class BD {
         usuarios = new ArrayList<Usuario>();
         servicios = new ArrayList<Servicio>();
         loadDB();
+        usuarios.add(new Usuario(TipoUsuario.CLIENTE,"305370612","1234",0));
+
+        //esto hay que volarlosno
+
     }
 
     /**
@@ -123,7 +129,7 @@ public class BD {
         agregar.addProperty("Nombre", nombre);
         agregar.addProperty("Categoria", categoria);
         arr.add(agregar);
-        if (!new BD().existeEnArchivo(nombre,"Marcas")){
+        if (!existeEnArchivo(nombre,"Marcas")){
             if ((((nombre.replaceAll(" ", "")).length()) != 0)&&(((categoria.replaceAll(" ", "")).length()) != 0)){
                 try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                     nuevo.add("Marcas", arr);
@@ -154,9 +160,9 @@ public class BD {
         JsonArray arr = new JsonArray();
         JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
         JsonArray marcas= obj.get("Marcas").getAsJsonArray();
-        if (!new BD().ligadoA(nombre,"Modelos","Marca")){
+        if (!ligadoA(nombre,"Modelos","Marca")){
             if((((nombre.replaceAll(" ", "")).length()) != 0)){
-                if (new BD().existeEnArchivo(nombre,"Marcas")){
+                if (existeEnArchivo(nombre,"Marcas")){
                     for (JsonElement marca : marcas){
                         JsonObject indicador= marca.getAsJsonObject();
                         if (!("\""+nombre+"\"").equals(indicador.get("Nombre").toString())){
@@ -207,8 +213,8 @@ public class BD {
         agregar.addProperty("Combustible", combustible);
         agregar.addProperty("Transmision", transmision);
         arr.add(agregar);
-        if (new BD().existeEnArchivo(marca,"Marcas")){
-            if (!new BD().ligadoA(marca,"Modelos","Marca")){
+        if (existeEnArchivo(marca,"Marcas")){
+            if (!ligadoA(marca,"Modelos","Marca")){
                 if ((((modelo.replaceAll(" ", "")).length()) != 0)&&(((marca.replaceAll(" ", "")).length()) != 0)&&(((combustible.replaceAll(" ", "")).length()) != 0)&&(((transmision.replaceAll(" ", "")).length()) != 0)){
                     try(PrintWriter escritor= new PrintWriter(new FileWriter(direccion))){
                         nuevo.add("Marcas", obj.get("Marcas").getAsJsonArray());
@@ -386,8 +392,48 @@ public class BD {
     }
     public Vehiculo getVehiculoByuser(String cedula,String placa){
         for (int i = 0; i < usuarios.size(); i++) {
-            
+            if(usuarios.get(i).getTipo().equals(TipoUsuario.CLIENTE)&&usuarios.get(i).getID().equals(cedula)){
+
+            }
         }
         return null;
     }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public ArrayList<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /** obtiene la cantidad de clientes
+     * @return la cantidad de clientes existentes
+     */
+    public int getClientQ(){
+        int tmp=0;
+        for (Usuario usr : usuarios) {
+            if(usr.getTipo().equals(TipoUsuario.CLIENTE)){
+                tmp+=1;
+            }
+        }
+        return tmp;
+    }
+
+    public String[] userIDs(){
+        String tmp[] = new String[getClientQ()];
+        int x=0;
+        for (int i = 0; i < usuarios.size(); i++) {
+            if(usuarios.get(i).getTipo().equals(TipoUsuario.CLIENTE)){
+                tmp[x]=usuarios.get(i).getID();
+                x++;
+            }
+        }
+        return tmp;
+    }
+
 }
