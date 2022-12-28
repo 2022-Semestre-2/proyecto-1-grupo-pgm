@@ -71,11 +71,6 @@ public class IniPantalla extends javax.swing.JFrame {
         });
 
         jTextField1.setMinimumSize(new java.awt.Dimension(171, 22));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Usuario:");
 
@@ -138,8 +133,13 @@ public class IniPantalla extends javax.swing.JFrame {
 
         if(!this.jTextField1.getText().isEmpty()&&!this.jPasswordField1.getPassword().toString().isEmpty()){
             if(validar(this.jTextField1.getText(), "^[a-zA-Z0-9_]+$")&&validar(this.jPasswordField1.getText(), "^[a-zA-Z0-9_]+$")){
-
-                new PantallaUsuario(this.bd).setVisible(true);
+                if(bd.signUp(this.jTextField1.getText(), this.jTextField1.getText())){
+                    new PantallaUsuario(this.bd).setVisible(true);
+                    this.dispose();
+                }
+                else{
+                    this.LabelErrs.setText("Usuario/contraseña incorrecto");
+                }
             }
             else{
                 this.LabelErrs.setText("Usuario/contraseña incorrecto");
@@ -153,10 +153,6 @@ public class IniPantalla extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -14,11 +14,12 @@ import taller.Servicio;
  * @author Usuario
  */
 public class MostrarServicioVisual extends javax.swing.JFrame {
-
+    BD bd;
     /**
      * Creates new form MostrarServicioVisual
      */
-    public MostrarServicioVisual() {
+    public MostrarServicioVisual(BD bd) {
+        this.bd=bd;
         initComponents();
     }
     private String respuesta(Boolean boo){
@@ -29,7 +30,7 @@ public class MostrarServicioVisual extends javax.swing.JFrame {
         }
     }
     public void mostrar(){
-        ArrayList<Servicio> arr = new BD().servicios;
+        ArrayList<Servicio> arr = bd.getServicios();
         boolean condicion = true;
         for (Servicio objeto:arr){
             if (objeto.getCedCliente().equals(jTextField1.getText()) || objeto.getVehiculo().getPlaca().equals(jTextField1.getText())){
@@ -176,7 +177,7 @@ public class MostrarServicioVisual extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MostrarServicioVisual().setVisible(true);
+                new MostrarServicioVisual(null).setVisible(true);
             }
         });
     }

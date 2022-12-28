@@ -31,10 +31,11 @@ public class BD {
         usuarios = new ArrayList<Usuario>();
         servicios = new ArrayList<Servicio>();
         loadDB();
-        usuarios.add(new Usuario(TipoUsuario.CLIENTE,"305370612","1234",0));
+        
 
         //esto hay que volarlosno
-
+        usuarios.add(new Usuario(TipoUsuario.CLIENTE,"305370612","1234",0));
+        usuarios.add(new Usuario(TipoUsuario.CLIENTE,"111111111","1234",0));
     }
 
     /**
@@ -71,7 +72,7 @@ public class BD {
      * @param nombreUsr nombre de usuario a buscar
      * @return null si no existe, el usuario si sí.
      */
-    public Usuario getuUsuario(String nombreUsr){
+    public Usuario getUsuario(String nombreUsr){
         if (userExists(nombreUsr)){
             for (Usuario usuario : usuarios) {
                 if(usuario.getUserName()==nombreUsr){
@@ -434,6 +435,27 @@ public class BD {
             }
         }
         return tmp;
+    }
+    public String[] getUserVehicles(String id){
+        for (Usuario usr : usuarios) {
+            if(usr.getID().equals(id)){
+                if(usr.getVehiculos().size()==0){
+                    return null;
+                }
+                String tmp[]=new String[usr.getVehiculos().size()];
+                for (int i = 0; i < usr.getVehiculos().size(); i++) {
+                    tmp[i]=usr.getVehiculos().get(i).getPlaca();
+                }
+            }
+        }
+        return null;
+    }
+    public boolean signUp(String id,String pass){
+        for (Usuario usr : usuarios) {
+            if(usr.getTipo().equals(TipoUsuario.EMPLEADO)&&(usr.getUserName().equals(id)||usr.getID().equals(id))&&usr.getUserPass().equals(pass))
+            return true;
+        }
+        return false;
     }
 
 }

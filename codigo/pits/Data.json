@@ -1,1 +1,33 @@
-{"Marcas":[{"Nombre":"Nissan","Categoria":"4x4"},{"Nombre":"Papatsu","Categoria":"4x4"},{"Nombre":"raya","Categoria":"jeep"},{"Nombre":"mercandia","Categoria":"pedo"}],"Modelos":[{"Nombre":"Serpeten","Marca":"Nissan","Asientos":4,"Puertas":4,"Combustible":"Super","Transmision":"Automatico"}],"Empleados":[],"Clientes":[],"Servicios":[]}
+{
+    "Clientes": [],
+    "Empleados": [],
+    "Marcas": [
+        {
+            "Categoria": "4x4",
+            "Nombre": "Nissan"
+        },
+        {
+            "Categoria": "4x4",
+            "Nombre": "Papatsu"
+        },
+        {
+            "Categoria": "jeep",
+            "Nombre": "raya"
+        },
+        {
+            "Categoria": "pedo",
+            "Nombre": "mercandia"
+        }
+    ],
+    "Modelos": [
+        {
+            "Asientos": 4,
+            "Combustible": "Super",
+            "Marca": "Nissan",
+            "Nombre": "Serpeten",
+            "Puertas": 4,
+            "Transmision": "Automatico"
+        }
+    ],
+    "Servicios": []
+}
