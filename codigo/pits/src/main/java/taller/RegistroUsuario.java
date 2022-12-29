@@ -6,8 +6,6 @@ package taller;
 
 import javax.swing.*;
 import javax.swing.JOptionPane;
-import com.mycompany.ventana.BD;
-import com.mycompany.ventana.Ventana_Registro;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -30,7 +28,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private String correo;
     private String Usuario;
     private String Contrasena;
-    private final BD bd;
+    private BD bd;
     private Usuario tmp;
     /**
      * Creates new form RegistroUsuario

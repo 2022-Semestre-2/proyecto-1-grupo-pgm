@@ -24,19 +24,6 @@ public class Usuario {
 
     ArrayList<Vehiculo> vehiculos;
 
-    public Usuario(String nombre, String userName, String userPass, String name, String iD, int telefono2,
-            String telefono, String correo, String fechaDeingreso) {
-        this.tipo = nombre;
-        this.userName = userName;
-        this.userPass = userPass;
-        this.name = name;
-        ID = iD;
-        this.tipoID = telefono2;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.fechaDeingreso = fechaDeingreso;
-    }
-
 
     Usuario(TipoUsuario tipo, String iD, String tipoID,int x) {
         this.tipo = tipo;
@@ -60,6 +47,11 @@ public class Usuario {
         this.vehiculos=new ArrayList<Vehiculo>();
     }
 
+
+
+    public Usuario(String nombre, String tipoIdentificacion, String identificacion, String rol2, String fechaIngreso,int telefono2, String correo2, String usuario, String contrasena) {
+    
+    }
 
 
     public TipoUsuario getTipo() {

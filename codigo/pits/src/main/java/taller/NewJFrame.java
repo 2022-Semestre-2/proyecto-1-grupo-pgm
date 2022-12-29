@@ -9,11 +9,12 @@ package taller;
  * @author Usuario
  */
 public class NewJFrame extends javax.swing.JFrame {
-
+    BD bd;
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public NewJFrame(BD bd) {
+        this.bd=bd;
         initComponents();
     }
 
@@ -90,7 +91,7 @@ public class NewJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Ventana_Registro VR2 = new Ventana_Registro();
+        Ventana_Registro VR2 = new Ventana_Registro(bd);
         VR2.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -125,7 +126,7 @@ public class NewJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new NewJFrame(new BD()).setVisible(true);
             }
         });
     }

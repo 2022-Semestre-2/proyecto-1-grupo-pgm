@@ -10,11 +10,13 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class Ventana_Registro extends javax.swing.JFrame {
+    BD bd;
 
     /**
      * Creates new form Ventana_Registro
      */
-    public Ventana_Registro() {
+    public Ventana_Registro(BD bd) {
+        this.bd=bd;
         initComponents() ;
     }
 
@@ -320,7 +322,7 @@ public class Ventana_Registro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        RegistroUsuario V = new RegistroUsuario();
+        RegistroUsuario V = new RegistroUsuario(bd);
         V.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -355,7 +357,7 @@ public class Ventana_Registro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana_Registro().setVisible(true);
+                new Ventana_Registro(null).setVisible(true);
             }
         });
     }
