@@ -100,11 +100,12 @@ public class RegistroServicio extends javax.swing.JFrame {
             if(jCheckBox12.isSelected()){
                 tmp.add(jCheckBox12.getText());
             }
+            return tmp;
         }
         else{
             JOptionPane.showMessageDialog(this, "Seleccione almenos una parte","ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
-        return null;
     }
 
     /**
@@ -478,17 +479,18 @@ public class RegistroServicio extends javax.swing.JFrame {
             if(!this.jTextDesc.getText().isEmpty()&&!this.jTextProb.getText().isEmpty()&&!this.jFormattedTextCosto.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
                 
                 bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()), this.jTextFieldCaso.getText(), this.jTextDesc.getText(), this.jTextProb.getText(),this.jFormattedTextCosto.getText(),this.jDateChooser1.getDate().toString(), this.jDateChooser2.getDate().toString()));
+                this.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Llene todos los campos","ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
         else if (this.tServicioComboBox.getSelectedIndex()==2){     //opcion de enderezado
-            if(!this.jTextDesc.getText().isEmpty()&&!this.jTextProb.getText().isEmpty()&&!this.jFormattedTextCosto.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
+            if(!this.jTextDesc.getText().isEmpty()&&!this.jFormattedTextCosto.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
                 if(getSelectedChecks()!=null){
-
-                    bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()),(String)jComboBoxUser.getSelectedItem(),jTextDesc.getText(),getSelectedChecks(),jCheckBoxPoliza.isSelected(),jTextFieldCaso.getText(),jFormattedTextCosto.getText(),jDateChooser1.getDate().toString(),jDateChooser2.getDate().toString()));
-                }
+                     bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()),(String)jComboBoxUser.getSelectedItem(),jTextDesc.getText(),getSelectedChecks(),jCheckBoxPoliza.isSelected(),jTextFieldCaso.getText(),jFormattedTextCosto.getText(),jDateChooser1.getDate().toString(),jDateChooser2.getDate().toString()));
+                    this.dispose();
+                    }
             }
             else{
                 JOptionPane.showMessageDialog(this, "Llene todos los campos","ERROR", JOptionPane.ERROR_MESSAGE);

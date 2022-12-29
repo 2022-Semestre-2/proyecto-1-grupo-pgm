@@ -45,6 +45,7 @@ public class Servicio {
         this.fechaTEntrega=fechaTEntrega;
         this.mecanica=true;
         this.enderezado=false;
+        this.activo=true;
     }
 
     /** metodo para crear un servicio de cliente
@@ -71,6 +72,7 @@ public class Servicio {
         this.fechaTEntrega=fechaTEntrega;
         this.mecanica=false;
         this.enderezado=true;
+        this.activo=true;
     }
 
     public boolean isActivo() {
