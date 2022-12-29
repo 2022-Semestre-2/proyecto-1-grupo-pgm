@@ -29,6 +29,13 @@ public class Usuario {
         this.tipo = tipo;
         ID = iD;
         this.tipoID = tipoID;
+        if (this.tipo.toString().equals("CLIENTE")){
+            this.vehiculos=new ArrayList<Vehiculo>();
+        }
+        else{
+
+        }
+        
     }
 
 
@@ -215,6 +222,10 @@ public class Usuario {
 
     public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
+    }
+
+    public void addVehiculo(Vehiculo tmp){
+        vehiculos.add(tmp);
     }
 
 }

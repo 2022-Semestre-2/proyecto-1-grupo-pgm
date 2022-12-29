@@ -79,7 +79,6 @@ public class IniPantalla extends javax.swing.JFrame {
         LabelErrs.setForeground(new java.awt.Color(255, 0, 51));
         LabelErrs.setText(" ");
 
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setMinimumSize(new java.awt.Dimension(171, 22));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -5,16 +5,5 @@
     "userPass": "admin",
     "ID": "999999999",
     "vehiculos": []
-  },
-  {
-    "tipo": "CLIENTE",
-    "ID": "305370612",
-    "tipoID": "1234"
-  },
-  {
-    "tipo": "CLIENTE",
-    "ID": "111111111",
-    "tipoID": "1234"
-  },
-  {}
+  }
 ]

@@ -25,7 +25,7 @@ public class Vehiculo {
         this.asientos = 4;
         this.puertas=4;
         this.ahno=1990;
-        this.placa = "ABCDEFG";
+        this.placa = test;
         this.combustible=Combustible.DIESEL;
         this.transmision=Transmision.SECUENCIAL;
         this.mantenimiento=false;

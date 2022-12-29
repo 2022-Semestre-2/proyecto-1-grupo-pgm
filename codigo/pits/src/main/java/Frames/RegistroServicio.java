@@ -25,6 +25,24 @@ public class RegistroServicio extends javax.swing.JFrame {
         this.bd=bd;
         initComponents();
         populateNames();
+        this.jCheckBox1.setVisible(false);
+            this.jCheckBox2.setVisible(false);
+            this.jCheckBox3.setVisible(false);
+            this.jCheckBox4.setVisible(false);
+            this.jCheckBox5.setVisible(false);
+            this.jCheckBox6.setVisible(false);
+            this.jCheckBox7.setVisible(false);
+            this.jCheckBox8.setVisible(false);
+            this.jCheckBox9.setVisible(false);
+            this.jCheckBox10.setVisible(false);
+            this.jCheckBox11.setVisible(false);
+            this.jCheckBox12.setVisible(false);
+            this.jCheckBoxPoliza.setVisible(false);
+            this.jLabelPartes.setVisible(false);
+            this.jLabelCaso.setVisible(false);
+            this.jTextFieldCaso.setVisible(false);
+            this.jLabelProb.setVisible(false);
+            this.jTextProb.setVisible(false);
     }
 
     private void populateNames(){
@@ -47,10 +65,10 @@ public class RegistroServicio extends javax.swing.JFrame {
         butSalir = new javax.swing.JButton();
         jLabelCedula = new javax.swing.JLabel();
         jLabelPlacavehiculo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelDesc = new javax.swing.JLabel();
+        jLabelPartes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jTextDesc = new javax.swing.JTextPane();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
@@ -63,25 +81,25 @@ public class RegistroServicio extends javax.swing.JFrame {
         jCheckBox10 = new javax.swing.JCheckBox();
         jCheckBox11 = new javax.swing.JCheckBox();
         jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
+        jCheckBoxPoliza = new javax.swing.JCheckBox();
+        jLabelProb = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
+        jTextProb = new javax.swing.JTextPane();
+        jLabelCaso = new javax.swing.JLabel();
+        jLabelCosto = new javax.swing.JLabel();
+        jFormattedTextCosto = new javax.swing.JFormattedTextField();
+        jTextFieldCaso = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelFR = new javax.swing.JLabel();
+        jLabelFE = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jComboBoxUser = new javax.swing.JComboBox<>();
         jComboBoxVehicle = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tServicioComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mecanica General", "Enderezado y Pintura" }));
+        tServicioComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eliga una opcion", "Mecanica General", "Enderezado y Pintura" }));
         tServicioComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tServicioComboBoxActionPerformed(evt);
@@ -100,11 +118,11 @@ public class RegistroServicio extends javax.swing.JFrame {
 
         jLabelPlacavehiculo.setText("Placa del Vehiculo");
 
-        jLabel1.setText("Descripcion");
+        jLabelDesc.setText("Descripcion");
 
-        jLabel2.setText("Partes");
+        jLabelPartes.setText("Partes");
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(jTextDesc);
 
         jCheckBox1.setText("Bumper");
 
@@ -130,28 +148,28 @@ public class RegistroServicio extends javax.swing.JFrame {
 
         jCheckBox12.setText("Tapa Cajuela");
 
-        jCheckBox13.setText("Poliza");
+        jCheckBoxPoliza.setText("Poliza");
 
-        jLabel3.setText("Descripcion Problema ");
+        jLabelProb.setText("Descripcion Problema ");
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(jTextProb);
 
-        jLabel4.setText("Numero de caso");
+        jLabelCaso.setText("Numero de caso");
 
-        jLabel5.setText("Costo");
+        jLabelCosto.setText("Costo");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0"))));
-        jFormattedTextField1.setMaximumSize(new java.awt.Dimension(150, 2147483647));
-        jFormattedTextField1.setMinimumSize(new java.awt.Dimension(150, 22));
-        jFormattedTextField1.setPreferredSize(new java.awt.Dimension(150, 22));
+        jFormattedTextCosto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0"))));
+        jFormattedTextCosto.setMaximumSize(new java.awt.Dimension(150, 2147483647));
+        jFormattedTextCosto.setMinimumSize(new java.awt.Dimension(150, 22));
+        jFormattedTextCosto.setPreferredSize(new java.awt.Dimension(150, 22));
 
-        jTextField1.setMaximumSize(new java.awt.Dimension(150, 2147483647));
-        jTextField1.setMinimumSize(new java.awt.Dimension(150, 22));
-        jTextField1.setPreferredSize(new java.awt.Dimension(150, 22));
+        jTextFieldCaso.setMaximumSize(new java.awt.Dimension(150, 2147483647));
+        jTextFieldCaso.setMinimumSize(new java.awt.Dimension(150, 22));
+        jTextFieldCaso.setPreferredSize(new java.awt.Dimension(150, 22));
 
-        jLabel6.setText("Fecha recibido");
+        jLabelFR.setText("Fecha recibido");
 
-        jLabel7.setText("Fecha de entrega");
+        jLabelFE.setText("Fecha de entrega");
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +187,7 @@ public class RegistroServicio extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxVehicle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eliga una Opcion" }));
         jComboBoxVehicle.setMinimumSize(new java.awt.Dimension(125, 22));
         jComboBoxVehicle.setPreferredSize(new java.awt.Dimension(125, 22));
         jComboBoxVehicle.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +201,7 @@ public class RegistroServicio extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jCheckBox13)
+                .addComponent(jCheckBoxPoliza)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -195,10 +214,10 @@ public class RegistroServicio extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelDesc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelPlacavehiculo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabelPartes)
+                            .addComponent(jLabelFR))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -206,12 +225,12 @@ public class RegistroServicio extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3)
+                                        .addComponent(jLabelProb)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jTextFieldCaso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jFormattedTextCosto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jCheckBox1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,7 +255,7 @@ public class RegistroServicio extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
+                                .addComponent(jLabelFE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(190, 190, 190)
@@ -251,8 +270,8 @@ public class RegistroServicio extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addComponent(jComboBoxVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabelCaso)
+                    .addComponent(jLabelCosto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -276,17 +295,17 @@ public class RegistroServicio extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(4, 4, 4)
-                                        .addComponent(jLabel1)
+                                        .addComponent(jLabelDesc)
                                         .addGap(54, 54, 54)
-                                        .addComponent(jLabel2))
-                                    .addComponent(jLabel3)
+                                        .addComponent(jLabelPartes))
+                                    .addComponent(jLabelProb)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(70, 70, 70)
-                                .addComponent(jCheckBox13)
+                                .addComponent(jCheckBoxPoliza)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabelCaso)
+                                    .addComponent(jTextFieldCaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -311,11 +330,11 @@ public class RegistroServicio extends javax.swing.JFrame {
                                         .addComponent(jCheckBox12)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
+                            .addComponent(jLabelFE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelCosto)
+                                    .addComponent(jFormattedTextCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +342,7 @@ public class RegistroServicio extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(butSalir)
                                         .addComponent(jButton1))))))
-                    .addComponent(jLabel6))
+                    .addComponent(jLabelFR))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -345,12 +364,32 @@ public class RegistroServicio extends javax.swing.JFrame {
             this.jCheckBox10.setVisible(false);
             this.jCheckBox11.setVisible(false);
             this.jCheckBox12.setVisible(false);
-            this.jCheckBox13.setVisible(false);
-            this.jLabel2.setVisible(false);
-            this.jLabel4.setVisible(false);
-            this.jTextField1.setVisible(false);
-            this.jLabel3.setVisible(true);
-            this.jTextPane2.setVisible(true);
+            this.jCheckBoxPoliza.setVisible(false);
+            this.jLabelPartes.setVisible(false);
+            this.jLabelCaso.setVisible(false);
+            this.jTextFieldCaso.setVisible(false);
+            this.jLabelProb.setVisible(false);
+            this.jTextProb.setVisible(false);
+        }
+        else if (this.tServicioComboBox.getSelectedIndex()==1){
+            this.jCheckBox1.setVisible(false);
+            this.jCheckBox2.setVisible(false);
+            this.jCheckBox3.setVisible(false);
+            this.jCheckBox4.setVisible(false);
+            this.jCheckBox5.setVisible(false);
+            this.jCheckBox6.setVisible(false);
+            this.jCheckBox7.setVisible(false);
+            this.jCheckBox8.setVisible(false);
+            this.jCheckBox9.setVisible(false);
+            this.jCheckBox10.setVisible(false);
+            this.jCheckBox11.setVisible(false);
+            this.jCheckBox12.setVisible(false);
+            this.jCheckBoxPoliza.setVisible(false);
+            this.jLabelPartes.setVisible(false);
+            this.jLabelCaso.setVisible(false);
+            this.jTextFieldCaso.setVisible(false);
+            this.jLabelProb.setVisible(true);
+            this.jTextProb.setVisible(true);
         }
         else{
             this.jCheckBox1.setVisible(true);
@@ -365,12 +404,12 @@ public class RegistroServicio extends javax.swing.JFrame {
             this.jCheckBox10.setVisible(true);
             this.jCheckBox11.setVisible(true);
             this.jCheckBox12.setVisible(true);
-            this.jCheckBox13.setVisible(true);
-            this.jLabel2.setVisible(true);
-            this.jLabel4.setVisible(true);
-            this.jTextField1.setVisible(true);
-            this.jLabel3.setVisible(false);
-            this.jTextPane2.setVisible(false);
+            this.jCheckBoxPoliza.setVisible(true);
+            this.jLabelPartes.setVisible(true);
+            this.jLabelCaso.setVisible(true);
+            this.jTextFieldCaso.setVisible(true);
+            this.jLabelProb.setVisible(false);
+            this.jTextProb.setVisible(false);
         }
     }//GEN-LAST:event_tServicioComboBoxActionPerformed
 
@@ -380,17 +419,20 @@ public class RegistroServicio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // revisar y registrar
-        if(this.tServicioComboBox.getSelectedIndex()==0){
-            if(!this.jTextPane1.getText().isEmpty()&&!this.jTextPane2.getText().isEmpty()&&!this.jFormattedTextField1.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
+        if(this.tServicioComboBox.getSelectedIndex()==1){
+            if(!this.jTextDesc.getText().isEmpty()&&!this.jTextProb.getText().isEmpty()&&!this.jFormattedTextCosto.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
                 
-                bd.addService(new Servicio(null, this.jTextField1.getText(), this.jTextPane1.getText(), this.jTextPane2.getText(),1,this.jDateChooser1.getDate().toString(), this.jDateChooser2.getDate().toString()));
+                bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()), this.jTextFieldCaso.getText(), this.jTextDesc.getText(), this.jTextProb.getText(),1,this.jDateChooser1.getDate().toString(), this.jDateChooser2.getDate().toString()));
             }
             else{
                 JOptionPane.showMessageDialog(this, "Llene todos los campos","ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
-        else{
+        else if (this.tServicioComboBox.getSelectedIndex()==2){
 
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Seleccione una opcion de servicio","ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -398,10 +440,21 @@ public class RegistroServicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxVehicleActionPerformed
 
-    private void jComboBoxUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxUserActionPerformed
-        
-    }//GEN-LAST:event_jComboBoxUserActionPerformed
-
+    private void jComboBoxUserActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        String a =(String)jComboBoxUser.getSelectedItem();
+        int x = jComboBoxVehicle.getItemCount();
+        if(x>1){
+            for (int i = 1; i < x; i++) {
+                jComboBoxVehicle.removeItemAt(1);
+            }
+        }
+        String tmp[]=bd.getUserVehicles((String)jComboBoxUser.getSelectedItem());
+        if(tmp!=null){
+            for (int i = 0; i < tmp.length; i++) {
+                jComboBoxVehicle.addItem(tmp[i]);
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -445,7 +498,6 @@ public class RegistroServicio extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
     private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
@@ -454,25 +506,26 @@ public class RegistroServicio extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JCheckBox jCheckBox9;
+    private javax.swing.JCheckBox jCheckBoxPoliza;
     private javax.swing.JComboBox<String> jComboBoxUser;
     private javax.swing.JComboBox<String> jComboBoxVehicle;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JFormattedTextField jFormattedTextCosto;
+    private javax.swing.JLabel jLabelCaso;
     private javax.swing.JLabel jLabelCedula;
+    private javax.swing.JLabel jLabelCosto;
+    private javax.swing.JLabel jLabelDesc;
+    private javax.swing.JLabel jLabelFE;
+    private javax.swing.JLabel jLabelFR;
+    private javax.swing.JLabel jLabelPartes;
     private javax.swing.JLabel jLabelPlacavehiculo;
+    private javax.swing.JLabel jLabelProb;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextDesc;
+    private javax.swing.JTextField jTextFieldCaso;
+    private javax.swing.JTextPane jTextProb;
     private javax.swing.JComboBox<String> tServicioComboBox;
     // End of variables declaration//GEN-END:variables
 }

@@ -34,8 +34,14 @@ public class BD {
         
 
         //esto hay que volarlosno
-        usuarios.add(new Usuario(TipoUsuario.CLIENTE,"305370612","1234",0));
-        usuarios.add(new Usuario(TipoUsuario.CLIENTE,"111111111","1234",0));
+        Usuario tmp = new Usuario(TipoUsuario.CLIENTE,"305370612","1234",0);
+        tmp.addVehiculo(new Vehiculo("aaaaa"));
+        tmp.addVehiculo(new Vehiculo("bbbbb"));
+        usuarios.add(tmp);
+        tmp = new Usuario(TipoUsuario.CLIENTE,"111111111","1234",0);
+        tmp.addVehiculo(new Vehiculo("12345"));
+        tmp.addVehiculo(new Vehiculo("56789"));
+        usuarios.add(tmp);
     }
 
     /**
@@ -406,7 +412,12 @@ public class BD {
     public Vehiculo getVehiculoByuser(String cedula,String placa){
         for (int i = 0; i < usuarios.size(); i++) {
             if(usuarios.get(i).getTipo().equals(TipoUsuario.CLIENTE)&&usuarios.get(i).getID().equals(cedula)){
-
+                ArrayList<Vehiculo> tmp = usuarios.get(i).getVehiculos();
+                for (int j = 0; j < tmp.size(); j++) {
+                    if(tmp.get(j).getPlaca().equals(placa)){
+                        return tmp.get(j);
+                    }
+                }
             }
         }
         return null;
@@ -458,6 +469,7 @@ public class BD {
                 for (int i = 0; i < usr.getVehiculos().size(); i++) {
                     tmp[i]=usr.getVehiculos().get(i).getPlaca();
                 }
+                return tmp;
             }
         }
         return null;
