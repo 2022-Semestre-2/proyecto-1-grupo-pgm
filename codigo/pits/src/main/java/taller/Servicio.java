@@ -15,8 +15,8 @@ public class Servicio {
     private String descripcionProblema;
     private ArrayList<String> partesAEnderezarPintar;
     private boolean poliza;
-    private int folio; //numero de caso
-    private int costo;
+    private String folio; //numero de caso
+    private String costo;
     private String fechaRecibido;
     private String fechaTEntrega;
 
@@ -35,7 +35,7 @@ public class Servicio {
      * @param fechaRecibido
      * @param fechaTEntrega
      */
-    public Servicio(Vehiculo vehiculo,String cedCliente,String descripcionVehiculo,String descripcionProblema,int costo,String fechaRecibido,String fechaTEntrega){
+    public Servicio(Vehiculo vehiculo,String cedCliente,String descripcionVehiculo,String descripcionProblema,String costo,String fechaRecibido,String fechaTEntrega){
         this.vehiculo=vehiculo;
         this.cedCliente=cedCliente;
         this.descripcionVehiculo=descripcionVehiculo;
@@ -59,7 +59,7 @@ public class Servicio {
      * @param fechaRecibido
      * @param fechaTEntrega
      */
-    Servicio(Vehiculo vehiculo,String cedCliente,String descripcionVehiculo,ArrayList<String> partesAEnderezarPintar,boolean poliza, int folio,int costo, String fechaRecibido, String fechaTEntrega){
+    public Servicio(Vehiculo vehiculo,String cedCliente,String descripcionVehiculo,ArrayList<String> partesAEnderezarPintar,boolean poliza, String folio,String costo, String fechaRecibido, String fechaTEntrega){
         this.vehiculo=vehiculo;
         this.cedCliente=cedCliente;
         this.descripcionVehiculo=descripcionVehiculo;
@@ -72,6 +72,7 @@ public class Servicio {
         this.mecanica=false;
         this.enderezado=true;
     }
+
     public boolean isActivo() {
         return activo;
     }
@@ -96,10 +97,10 @@ public class Servicio {
     public boolean isPoliza() {
         return poliza;
     }
-    public int getFolio() {
+    public String getFolio() {
         return folio;
     }
-    public int getCosto() {
+    public String getCosto() {
         return costo;
     }
     public String getFechaRecibido() {

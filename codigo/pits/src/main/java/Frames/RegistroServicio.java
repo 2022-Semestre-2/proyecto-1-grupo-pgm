@@ -4,6 +4,8 @@
  */
 package Frames;
 
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -45,11 +47,64 @@ public class RegistroServicio extends javax.swing.JFrame {
             this.jTextProb.setVisible(false);
     }
 
+    /**
+     * Metodo para poblar el combobox de clientes con clientes
+     */
     private void populateNames(){
         String tmp[]= bd.userIDs();
         for (int i = 0; i < tmp.length; i++) {
             jComboBoxUser.addItem(tmp[i]);
         }
+    }
+    /** obtiene las partes con checks;
+     * @return null si no hay ninguna seleccionada, Arraylist<String> si hay
+     */
+    private ArrayList<String> getSelectedChecks(){
+        ArrayList<String> tmp = new ArrayList<String>();
+
+        // https://media.giphy.com/media/zjUQlOdrAP02dJ64gJ/giphy.gif 
+        if(jCheckBox1.isSelected()||jCheckBox2.isSelected()||jCheckBox3.isSelected()||jCheckBox4.isSelected()||jCheckBox5.isSelected()||jCheckBox6.isSelected()||jCheckBox7.isSelected()||jCheckBox8.isSelected()||jCheckBox9.isSelected()||jCheckBox10.isSelected()||jCheckBox11.isSelected()||jCheckBox12.isSelected()){
+            if(jCheckBox1.isSelected()){
+                tmp.add(jCheckBox1.getText());
+            }
+            if(jCheckBox2.isSelected()){
+                tmp.add(jCheckBox2.getText());
+            }
+            if(jCheckBox3.isSelected()){
+                tmp.add(jCheckBox3.getText());
+            }
+            if(jCheckBox4.isSelected()){
+                tmp.add(jCheckBox4.getText());
+            }
+            if(jCheckBox5.isSelected()){
+                tmp.add(jCheckBox5.getText());
+            }
+            if(jCheckBox6.isSelected()){
+                tmp.add(jCheckBox6.getText());
+            }
+            if(jCheckBox7.isSelected()){
+                tmp.add(jCheckBox7.getText());
+            }
+            if(jCheckBox8.isSelected()){
+                tmp.add(jCheckBox8.getText());
+            }
+            if(jCheckBox9.isSelected()){
+                tmp.add(jCheckBox9.getText());
+            }
+            if(jCheckBox10.isSelected()){
+                tmp.add(jCheckBox10.getText());
+            }
+            if(jCheckBox11.isSelected()){
+                tmp.add(jCheckBox11.getText());
+            }
+            if(jCheckBox12.isSelected()){
+                tmp.add(jCheckBox12.getText());
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Seleccione almenos una parte","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 
     /**
@@ -419,17 +474,25 @@ public class RegistroServicio extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // revisar y registrar
-        if(this.tServicioComboBox.getSelectedIndex()==1){
+        if(this.tServicioComboBox.getSelectedIndex()==1){       //opcion de mecanica
             if(!this.jTextDesc.getText().isEmpty()&&!this.jTextProb.getText().isEmpty()&&!this.jFormattedTextCosto.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
                 
-                bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()), this.jTextFieldCaso.getText(), this.jTextDesc.getText(), this.jTextProb.getText(),1,this.jDateChooser1.getDate().toString(), this.jDateChooser2.getDate().toString()));
+                bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()), this.jTextFieldCaso.getText(), this.jTextDesc.getText(), this.jTextProb.getText(),this.jFormattedTextCosto.getText(),this.jDateChooser1.getDate().toString(), this.jDateChooser2.getDate().toString()));
             }
             else{
                 JOptionPane.showMessageDialog(this, "Llene todos los campos","ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
-        else if (this.tServicioComboBox.getSelectedIndex()==2){
+        else if (this.tServicioComboBox.getSelectedIndex()==2){     //opcion de enderezado
+            if(!this.jTextDesc.getText().isEmpty()&&!this.jTextProb.getText().isEmpty()&&!this.jFormattedTextCosto.getText().isEmpty()&&this.jDateChooser1.getDate()!=null&&this.jDateChooser2.getDate()!=null){
+                if(getSelectedChecks()!=null){
 
+                    bd.addService(new Servicio(bd.getVehiculoByuser((String)jComboBoxUser.getSelectedItem(), (String)jComboBoxVehicle.getSelectedItem()),(String)jComboBoxUser.getSelectedItem(),jTextDesc.getText(),getSelectedChecks(),jCheckBoxPoliza.isSelected(),jTextFieldCaso.getText(),jFormattedTextCosto.getText(),jDateChooser1.getDate().toString(),jDateChooser2.getDate().toString()));
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Llene todos los campos","ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
         else{
             JOptionPane.showMessageDialog(this, "Seleccione una opcion de servicio","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -438,6 +501,7 @@ public class RegistroServicio extends javax.swing.JFrame {
 
     private void jComboBoxVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVehicleActionPerformed
         // TODO add your handling code here:
+        //TODO: remover este action listener
     }//GEN-LAST:event_jComboBoxVehicleActionPerformed
 
     private void jComboBoxUserActionPerformed(java.awt.event.ActionEvent evt) {                                              

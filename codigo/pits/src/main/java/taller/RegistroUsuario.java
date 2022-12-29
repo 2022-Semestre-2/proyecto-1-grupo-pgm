@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ventana;
+package taller;
 
 import javax.swing.*;
 import javax.swing.JOptionPane;
-import com.mycompany.ventana.BD;
-import com.mycompany.ventana.Ventana_Registro;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -39,15 +37,15 @@ public class RegistroUsuario extends javax.swing.JFrame {
     public RegistroUsuario(BD bd){
         this.bd=bd;
         initComponents();
-        populateNames();
+        //populateNames();
     }
     
-    private void populateNames(){
+/*     private void populateNames(){
         String tmp[]= bd.userIDs();
         for (int i = 0; i < tmp.length; i++) {
             jComboBoxUser.addItem(tmp[i]);
         }
-    }
+    } */
     
     /**
      * This method is called from within the constructor to initialize the form.
