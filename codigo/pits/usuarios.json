@@ -3,6 +3,7 @@
     "tipo": "EMPLEADO",
     "userName": "admin",
     "userPass": "admin",
+    "ID": "999999999",
     "vehiculos": []
   }
 ]

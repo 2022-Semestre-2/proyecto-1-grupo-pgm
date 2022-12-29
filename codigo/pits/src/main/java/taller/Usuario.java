@@ -24,6 +24,20 @@ public class Usuario {
 
     ArrayList<Vehiculo> vehiculos;
 
+    public Usuario(String nombre, String userName, String userPass, String name, String iD, int telefono2,
+            String telefono, String correo, String fechaDeingreso) {
+        this.tipo = nombre;
+        this.userName = userName;
+        this.userPass = userPass;
+        this.name = name;
+        ID = iD;
+        this.tipoID = telefono2;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.fechaDeingreso = fechaDeingreso;
+    }
+
+
     Usuario(TipoUsuario tipo, String iD, String tipoID,int x) {
         this.tipo = tipo;
         ID = iD;
@@ -45,6 +59,7 @@ public class Usuario {
         this.userPass=pass;
         this.vehiculos=new ArrayList<Vehiculo>();
     }
+
 
 
     public TipoUsuario getTipo() {
@@ -133,6 +148,81 @@ public class Usuario {
     public String toString() {
         // TODO Auto-generated method stub
         return ID;
+    }
+
+
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
+    }
+
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+
+    public void setUserPass(String userPass) {
+        this.userPass = userPass;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+
+    public void setTipoID(String tipoID) {
+        this.tipoID = tipoID;
+    }
+
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+
+    public void setFechaDeingreso(String fechaDeingreso) {
+        this.fechaDeingreso = fechaDeingreso;
+    }
+
+
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
+    }
+
+
+    public void setCanton(String canton) {
+        Canton = canton;
+    }
+
+
+    public void setFechaCumple(String fechaCumple) {
+        this.fechaCumple = fechaCumple;
+    }
+
+
+    public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
     }
 
 }

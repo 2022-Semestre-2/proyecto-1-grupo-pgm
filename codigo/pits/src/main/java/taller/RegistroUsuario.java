@@ -45,7 +45,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private void populateNames(){
         String tmp[]= bd.userIDs();
         for (int i = 0; i < tmp.length; i++) {
-            jComboBoxUser.addItem(tmp[i]);
+            //jComboBoxUser.addItem(tmp[i]);
         }
     }
     

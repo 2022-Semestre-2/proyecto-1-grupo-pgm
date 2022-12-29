@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.ToIntBiFunction;
 
 import javax.swing.JOptionPane;
@@ -26,6 +25,7 @@ import Enums.TipoUsuario;
 public class BD {
     ArrayList<Usuario> usuarios;
     ArrayList<Servicio> servicios;
+     private final String direccion= "data.json";
 
     public BD(){
         usuarios = new ArrayList<Usuario>();
@@ -45,6 +45,12 @@ public class BD {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(usuarios);
         try (FileWriter arch = new FileWriter("usuarios.json")) {
+            gson.toJson(usuarios, arch);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        json = gson.toJson(servicios);
+        try (FileWriter arch = new FileWriter("servicios.json")) {
             gson.toJson(usuarios, arch);
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,18 +95,26 @@ public class BD {
      */
     private void loadDB(){
         Gson gson = new Gson();
-        Usuario[] myTypes;
+        Usuario[] usrTMP;
         try {
-            myTypes = gson.fromJson(new FileReader("usuarios.json"), Usuario[].class);      //ni puta idea de porque no me deja con arraylist pura
-            for (int i = 0; i < myTypes.length; i++) {      //poner los elems de array en arraylist
-                this.usuarios.add(myTypes[i]);
+            usrTMP = gson.fromJson(new FileReader("usuarios.json"), Usuario[].class);      //ni puta idea de porque no me deja con arraylist pura
+            for (int i = 0; i < usrTMP.length; i++) {      //poner los elems de array en arraylist
+                this.usuarios.add(usrTMP[i]);
             }
         } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
             Usuario tmp = new Usuario(TipoUsuario.EMPLEADO, "admin", "admin");
+            tmp.setID("999999999");
             this.usuarios.add(tmp);
             saveJson();
         }
-        System.out.println("a");
+        Servicio[] servsTMP;
+        try {
+            servsTMP = gson.fromJson(new FileReader("servicios.json"), Servicio[].class);      //ni puta idea de porque no me deja con arraylist pura
+            for (int i = 0; i < servsTMP.length; i++) {      //poner los elems de array en arraylist
+                this.servicios.add(servsTMP[i]);
+            }
+        } catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+        }
     }
 
     /** Revisa si un usuario existe
@@ -114,8 +128,6 @@ public class BD {
         }
         return false;
     }
-    //Variable que contiene la direccion del archivo JSON donde se guardan los datos
-    private final String direccion= "data.json";
     /**
      * Metodo que se encarga de incluir una marca a la base de datos 
      * @param nombre Nombre de la marca a registrar 
