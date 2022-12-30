@@ -144,7 +144,7 @@ public class PantallaUsuario extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         bd.saveJson();
-        new IniPantalla().setVisible(true);
+        new IniPantalla(bd).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 

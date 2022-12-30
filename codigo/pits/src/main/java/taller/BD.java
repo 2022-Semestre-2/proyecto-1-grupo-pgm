@@ -44,9 +44,10 @@ public class BD {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        json = gson.toJson(servicios);
+        Gson son = new GsonBuilder().setPrettyPrinting().create();
+        json = son.toJson(servicios);
         try (FileWriter arch = new FileWriter("servicios.json")) {
-            gson.toJson(usuarios, arch);
+            son.toJson(servicios, arch);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,6 +58,7 @@ public class BD {
      */
     public void addUsr(Usuario usr){
         this.usuarios.add(usr);
+        saveJson();
     }
 
 
@@ -66,6 +68,7 @@ public class BD {
      */
     public void addService(Servicio servicio){
         this.servicios.add(servicio);
+        saveJson();
     }
 
 

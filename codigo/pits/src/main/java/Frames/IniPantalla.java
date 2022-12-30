@@ -19,9 +19,9 @@ public class IniPantalla extends javax.swing.JFrame {
     /**
      * Creates new form IniPantalla
      */
-    public IniPantalla() {
+    public IniPantalla(BD bd) {
         initComponents();
-        this.bd= new BD();
+        this.bd= bd;
         
     }
     /**
@@ -183,7 +183,7 @@ public class IniPantalla extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IniPantalla().setVisible(true);
+                new IniPantalla(null).setVisible(true);
             }
         });
     }
