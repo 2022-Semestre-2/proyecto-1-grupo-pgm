@@ -2,25 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.mycompany.ventana;
+package taller;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import com.mycompany.ventana.BD;
 
 /**
  *
  * @author Usuario
  */
 public class RegistroVehiculoCliente extends javax.swing.JFrame {
-
+    BD bd;
     /**
      * Creates new form RegistroVehiculoCliente
      * 
      */
-    public RegistroVehiculoCliente() {
+    public RegistroVehiculoCliente(BD bd) {
+        this.bd=bd;
         initComponents();
     }
     
@@ -181,10 +181,12 @@ public class RegistroVehiculoCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if(jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "No se puede avanzar, hay espacios en blanco");
+        if(!jTextField1.getText().isEmpty()&&!jTextField3.getText().isEmpty()&&!jTextField4.getText().isEmpty()){
+            Usuario tmp = bd.getUsuario(jTextField1.getText());
+            tmp.addVehiculo(new Vehiculo((String)jComboBox1.getSelectedItem(),(String)jComboBox2.getSelectedItem(),4,4,Integer.parseInt(jTextField3.getText()),jTextField4.getText(),null,null,true));
+
         }
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "No se puede avanzar, hay espacios en blanco");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -232,7 +234,7 @@ public class RegistroVehiculoCliente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroVehiculoCliente().setVisible(true);
+                new RegistroVehiculoCliente(null).setVisible(true);
             }
         });
     }

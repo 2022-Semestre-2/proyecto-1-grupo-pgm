@@ -76,7 +76,7 @@ public class BD {
     public Usuario getUsuario(String nombreUsr){
         if (userExists(nombreUsr)){
             for (Usuario usuario : usuarios) {
-                if(usuario.getUserName()==nombreUsr){
+                if(usuario.getUserName()==nombreUsr||usuario.getID().equals(nombreUsr)){
                     return usuario;
                 }
             }
