@@ -57,7 +57,15 @@ public class Usuario {
 
 
     public Usuario(String nombre, String tipoIdentificacion, String identificacion, String rol2, String fechaIngreso,int telefono2, String correo2, String usuario, String contrasena) {
-    
+        this.name=nombre;
+        this.tipoID=tipoIdentificacion;
+        this.ID=identificacion;
+        this.rol=rol2;
+        this.fechaDeingreso=fechaIngreso;
+        this.telefono=String.valueOf(telefono2);
+        this.correo=correo2;
+        this.userName=usuario;
+        this.userPass=contrasena;
     }
 
 

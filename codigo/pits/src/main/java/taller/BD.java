@@ -31,17 +31,6 @@ public class BD {
         usuarios = new ArrayList<Usuario>();
         servicios = new ArrayList<Servicio>();
         loadDB();
-        
-
-        //esto hay que volarlosno
-        Usuario tmp = new Usuario(TipoUsuario.CLIENTE,"305370612","1234",0);
-        tmp.addVehiculo(new Vehiculo("aaaaa"));
-        tmp.addVehiculo(new Vehiculo("bbbbb"));
-        usuarios.add(tmp);
-        tmp = new Usuario(TipoUsuario.CLIENTE,"111111111","1234",0);
-        tmp.addVehiculo(new Vehiculo("12345"));
-        tmp.addVehiculo(new Vehiculo("56789"));
-        usuarios.add(tmp);
     }
 
     /**
