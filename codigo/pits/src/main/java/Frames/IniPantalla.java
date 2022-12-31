@@ -22,7 +22,7 @@ public class IniPantalla extends javax.swing.JFrame {
     public IniPantalla(BD bd) {
         initComponents();
         this.bd= bd;
-        
+        jButton2.setVisible(false);
     }
     /**
      * Metodo para validar con regex

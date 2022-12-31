@@ -448,7 +448,7 @@ public class BD {
         String tmp[] = new String[getClientQ()];
         int x=0;
         for (int i = 0; i < usuarios.size(); i++) {
-            if(usuarios.get(i).getTipo().equals(TipoUsuario.CLIENTE)){
+            if(usuarios.get(i).getTipo()!=null&&usuarios.get(i).getTipo().equals(TipoUsuario.CLIENTE)){
                 tmp[x]=usuarios.get(i).getID();
                 x++;
             }
