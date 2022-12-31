@@ -6,6 +6,9 @@ package taller;
 
 import javax.swing.*;
 import javax.swing.JOptionPane;
+
+import Enums.TipoUsuario;
+
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -162,6 +165,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         }   
         // TODO add your handling code here:
         tmp= new Usuario(nombre, TipoIdentificacion, Identificacion, rol, fechaIngreso, telefono, correo, Usuario, Contrasena);
+        tmp.setTipo(TipoUsuario.EMPLEADO);
         bd.addUsr(tmp);
         bd.saveJson();
     }//GEN-LAST:event_jButton1ActionPerformed
