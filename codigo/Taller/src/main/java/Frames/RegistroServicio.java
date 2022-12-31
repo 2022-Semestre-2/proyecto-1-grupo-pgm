@@ -4,7 +4,15 @@
  */
 package Frames;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -18,6 +26,7 @@ import taller.Servicio;
  */
 public class RegistroServicio extends javax.swing.JFrame {
     public BD bd;
+    private final String direccion= "C:\\Users\\Usuario\\Documents\\NetBeansProjects\\Taller\\src\\main\\java\\data.json";
 
     /**
      * Creates new form RegistroServicio
@@ -26,7 +35,11 @@ public class RegistroServicio extends javax.swing.JFrame {
     public RegistroServicio(BD bd) {
         this.bd=bd;
         initComponents();
-        populateNames();
+        try {
+            getIdentificaciones();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RegistroServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.jCheckBox1.setVisible(false);
             this.jCheckBox2.setVisible(false);
             this.jCheckBox3.setVisible(false);
@@ -46,14 +59,32 @@ public class RegistroServicio extends javax.swing.JFrame {
             this.jLabelProb.setVisible(false);
             this.jTextProb.setVisible(false);
     }
-
-    /**
-     * Metodo para poblar el combobox de clientes con clientes
-     */
-    private void populateNames(){
-        String tmp[]= bd.userIDs();
-        for (int i = 0; i < tmp.length; i++) {
-            jComboBoxUser.addItem(tmp[i]);
+    private void getIdentificaciones() throws FileNotFoundException{
+        jComboBoxUser.removeAllItems();
+        JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
+        JsonArray marcas= obj.get("Clientes").getAsJsonArray();
+        for (JsonElement marca : marcas){
+            JsonObject indicador= marca.getAsJsonObject();
+            if (new BD().ligadoA(indicador.get("Identificacion").getAsString(), "Vehiculos", "Identificacion")){
+                jComboBoxUser.addItem(indicador.get("Identificacion").getAsString());
+            }
+        }
+        if (jComboBoxUser==null){
+            JOptionPane.showMessageDialog(null, "No hay clientes con vehiculos", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    private void getVehiculos() throws FileNotFoundException{
+        JsonObject obj= new JsonParser().parse(new FileReader(direccion)).getAsJsonObject();
+        JsonArray marcas= obj.get("Vehiculos").getAsJsonArray();
+        jComboBoxVehicle.removeAllItems();
+        for (JsonElement marca : marcas){
+            JsonObject indicador= marca.getAsJsonObject();
+            if (jComboBoxUser.getSelectedItem()!=null && jComboBoxUser.getSelectedItem().toString().equals(indicador.get("Identificacion").getAsString())){
+                jComboBoxVehicle.addItem(indicador.get("Placa").getAsString());
+            }
+        }
+        if (jComboBoxUser.getSelectedItem()!= null&&jComboBoxVehicle==null){
+            JOptionPane.showMessageDialog(null, "No hay vehiculos ligados", "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
     /** obtiene las partes con checks;
@@ -152,6 +183,7 @@ public class RegistroServicio extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jComboBoxUser = new javax.swing.JComboBox<>();
         jComboBoxVehicle = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -234,7 +266,6 @@ public class RegistroServicio extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eliga una opcion" }));
         jComboBoxUser.setMinimumSize(new java.awt.Dimension(125, 22));
         jComboBoxUser.setPreferredSize(new java.awt.Dimension(125, 22));
         jComboBoxUser.addActionListener(new java.awt.event.ActionListener() {
@@ -243,12 +274,17 @@ public class RegistroServicio extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxVehicle.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Eliga una Opcion" }));
         jComboBoxVehicle.setMinimumSize(new java.awt.Dimension(125, 22));
         jComboBoxVehicle.setPreferredSize(new java.awt.Dimension(125, 22));
         jComboBoxVehicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxVehicleActionPerformed(evt);
+            }
+        });
+
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -259,15 +295,6 @@ public class RegistroServicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tServicioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelCedula)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBoxUser, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabelPlacavehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabelCaso)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -330,15 +357,31 @@ public class RegistroServicio extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabelProb)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tServicioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelCedula)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxUser, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabelPlacavehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tServicioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tServicioComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCedula)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -378,7 +421,7 @@ public class RegistroServicio extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jCheckBox9)
                                 .addComponent(jCheckBox12)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCaso)
                     .addComponent(jTextFieldCaso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,7 +440,7 @@ public class RegistroServicio extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(butSalir)
                         .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -501,22 +544,22 @@ public class RegistroServicio extends javax.swing.JFrame {
 
     private void jComboBoxVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxVehicleActionPerformed
         // TODO add your handling code here:
-        //TODO: remover este action listener
     }//GEN-LAST:event_jComboBoxVehicleActionPerformed
 
-    private void jComboBoxUserActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        String a =(String)jComboBoxUser.getSelectedItem();
-        int x = jComboBoxVehicle.getItemCount();
-        if(x>1){
-            for (int i = 1; i < x; i++) {
-                jComboBoxVehicle.removeItemAt(1);
-            }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+            getIdentificaciones();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RegistroServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String tmp[]=bd.getUserVehicles((String)jComboBoxUser.getSelectedItem());
-        if(tmp!=null){
-            for (int i = 0; i < tmp.length; i++) {
-                jComboBoxVehicle.addItem(tmp[i]);
-            }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBoxUserActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        try {
+            getVehiculos();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(RegistroServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
@@ -558,6 +601,7 @@ public class RegistroServicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butSalir;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox10;
     private javax.swing.JCheckBox jCheckBox11;
