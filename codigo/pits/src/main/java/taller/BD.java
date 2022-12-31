@@ -34,7 +34,7 @@ public class BD {
     }
 
     /**
-     * Guarda la base de datos en "usuarios.json"
+     * Guarda la base de datos en "usuarios.json" y "servicios.json"
      */
     public void saveJson(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -89,7 +89,7 @@ public class BD {
 
     
     /**
-     * Carga la base de datos
+     * Carga las base de datos
      */
     private void loadDB(){
         Gson gson = new Gson();
@@ -401,6 +401,11 @@ public class BD {
             JOptionPane.showMessageDialog(null,"Cliente no encontrado","Error",JOptionPane.WARNING_MESSAGE);
         }
     }
+    /** obtiene el vehiculo de un usuario
+     * @param cedula cedula del usuario
+     * @param placa placa del vehiculo
+     * @return el objeto tipo vehiculo o null si no se pudo obtener
+     */
     public Vehiculo getVehiculoByuser(String cedula,String placa){
         for (int i = 0; i < usuarios.size(); i++) {
             if(usuarios.get(i).getTipo().equals(TipoUsuario.CLIENTE)&&usuarios.get(i).getID().equals(cedula)){
@@ -423,10 +428,6 @@ public class BD {
         return servicios;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
     /** obtiene la cantidad de clientes
      * @return la cantidad de clientes existentes
      */
@@ -440,6 +441,9 @@ public class BD {
         return tmp;
     }
 
+    /** obtiene las cedulas de todos los clientes registrados
+     * @return String[] de cedulas o null si no hay
+     */
     public String[] userIDs(){
         String tmp[] = new String[getClientQ()];
         int x=0;
@@ -451,6 +455,10 @@ public class BD {
         }
         return tmp;
     }
+    /** obtiene las placa de los vehiculos de un usuario
+     * @param id id de usuario
+     * @return null si no tiene vehiculos registrados, String[] con las placas
+     */
     public String[] getUserVehicles(String id){
         for (Usuario usr : usuarios) {
             if(usr.getID().equals(id)){
@@ -466,6 +474,11 @@ public class BD {
         }
         return null;
     }
+    /** indica si el usuario y contrase;a son correctos y se puede iniciar sesion
+     * @param id id/nombre de usuario
+     * @param pass password
+     * @return true si ambos son correctos, false si uno o ambos son incorrectos
+     */
     public boolean signUp(String id,String pass){
         for (Usuario usr : usuarios) {
             if(usr.getTipo().equals(TipoUsuario.EMPLEADO)&&(usr.getUserName().equals(id)||usr.getID().equals(id))&&usr.getUserPass().equals(pass))
